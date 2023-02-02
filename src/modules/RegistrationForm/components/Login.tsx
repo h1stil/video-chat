@@ -5,7 +5,7 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "./Login.scss";
 
 const Login: FC = () => {
-  const onFinish = (values: any) => {
+  const onFinish = (values: { username: string; password: string }) => {
     console.log("Received values of form: ", values);
   };
   return (
