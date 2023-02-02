@@ -1,5 +1,4 @@
-import { Button, Switch, ConfigProvider, Select, MenuProps, Menu } from "antd";
-import { useState } from "react";
+import { Button, Switch, ConfigProvider, Select } from "antd";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
