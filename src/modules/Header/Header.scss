@@ -1,0 +1,27 @@
+@import "../../UI/constants.scss";
+
+.header {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  color: $mainColor;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+a {
+  text-decoration: none;
+}
+
+.header__logo {
+  color: $secondMainColor;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

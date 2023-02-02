@@ -7,12 +7,17 @@ import {
   CheckOutlined,
 } from "@ant-design/icons";
 
-import "./Register.css";
+import "./Register.scss";
 
 const Register: FC = () => {
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: {
+    email: string;
+    password: string;
+    confirm: string;
+    nickname: string;
+  }) => {
     console.log("Received values of form: ", values);
   };
   const registrSuccess = false;

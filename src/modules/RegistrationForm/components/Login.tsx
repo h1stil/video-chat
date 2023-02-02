@@ -2,10 +2,10 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import "./Login.css";
+import "./Login.scss";
 
 const Login: FC = () => {
-  const onFinish = (values: any) => {
+  const onFinish = (values: { username: string; password: string }) => {
     console.log("Received values of form: ", values);
   };
   return (
@@ -55,7 +55,7 @@ const Login: FC = () => {
             >
               Войти
             </Button>
-            или <Link to="/register">Зарегестрируйтесь!</Link>
+            <Link to="/register">Зарегестрироваться!</Link>
           </Form.Item>
         </Form>
       </div>
