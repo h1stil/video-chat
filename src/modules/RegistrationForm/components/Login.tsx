@@ -55,7 +55,7 @@ const Login: FC = () => {
             >
               Войти
             </Button>
-            или <Link to="/register">Зарегестрируйтесь!</Link>
+            <Link to="/register">Зарегестрироваться!</Link>
           </Form.Item>
         </Form>
       </div>
