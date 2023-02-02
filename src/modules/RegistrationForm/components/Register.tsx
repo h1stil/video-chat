@@ -7,7 +7,7 @@ import {
   CheckOutlined,
 } from "@ant-design/icons";
 
-import "./Register.css";
+import "./Register.scss";
 
 const Register: FC = () => {
   const [form] = Form.useForm();

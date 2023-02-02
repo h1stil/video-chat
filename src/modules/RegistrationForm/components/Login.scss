@@ -1,3 +1,5 @@
+@import "../../../UI/constants.scss";
+
 .auth__wrapper {
   max-width: 420px;
   width: 100%;
@@ -17,6 +19,6 @@
 
 .hint-text {
   margin-bottom: 20px;
-  color: darkgray;
+  color: $hintText;
   font-size: 0.8rem;
 }

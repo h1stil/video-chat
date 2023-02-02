@@ -1,0 +1,31 @@
+@import "../../UI/constants.scss";
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: $secondMainColor;
+  height: 72px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+}
+
+.authors__item {
+  display: flex;
+  flex-direction: column;
+  :hover {
+    color: $hoverColor;
+  }
+}
+
+.authors__link {
+  text-decoration: none;
+  color: $mainColor;
+}
+
+.footer__year {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $mainColor;
+}

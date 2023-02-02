@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import "./Login.css";
+import "./Login.scss";
 
 const Login: FC = () => {
   const onFinish = (values: any) => {
