@@ -1,0 +1,25 @@
+@import "../../UI/constants.scss";
+
+.main {
+  display: flex;
+  margin: 15px;
+  gap: 20px;
+}
+
+.main__dialog {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.contacts__list {
+  margin: 10px 0;
+}
+
+.dialog__user {
+  text-align: center;
+  margin-bottom: 20px;
+  .user__status {
+    color: $hintText;
+    font-size: 0.8em;
+  }
+}

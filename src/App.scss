@@ -80,7 +80,8 @@ select {
 html[data-theme="dark"] {
   background-color: $mainColorDark;
   color: #fff;
-  .header__logo {
+  .header__logo,
+  .header__chat {
     color: $mainColor;
   }
 }

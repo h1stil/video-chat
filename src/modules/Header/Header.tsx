@@ -26,9 +26,14 @@ const Header = () => {
 
   return (
     <div className="header">
-      <Link to="/">
-        <div className="header__logo">LOGO</div>
-      </Link>
+      <div className="header__left">
+        <Link to="/">
+          <div className="header__logo">LOGO</div>
+        </Link>
+        <Link to="/im">
+          <div className="header__chat">CHAT</div>
+        </Link>
+      </div>
       <div className="header__right">
         <Select
           defaultValue="RU"
