@@ -16,11 +16,18 @@ a {
   text-decoration: none;
 }
 
-.header__logo {
+.header__logo,
+.header__chat {
   color: $secondMainColor;
 }
 
 .header__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__left {
   display: flex;
   align-items: center;
   gap: 20px;
