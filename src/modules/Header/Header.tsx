@@ -28,10 +28,12 @@ const Header = () => {
     <div className="header">
       <div className="header__left">
         <Link to="/">
-          <div className="header__logo">LOGO</div>
+          <div className="header__logo"></div>
         </Link>
         <Link to="/im">
-          <div className="header__chat">CHAT</div>
+          <div className="header__chat">
+            <h1>ЧАТ</h1>
+          </div>
         </Link>
       </div>
       <div className="header__right">

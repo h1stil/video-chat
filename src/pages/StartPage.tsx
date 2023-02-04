@@ -1,5 +1,11 @@
+import "./StartPage.scss";
+
 const StartPage = () => {
-  return <h1>Video Chat</h1>;
+  return (
+    <div>
+      <img className="startpage__pic" src="../../../001.png"></img>
+    </div>
+  );
 };
 
 export default StartPage;
