@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "./Login.scss";
+import submitForm from "../../drivers/submitForm";
+import { ILogForm } from "../../../globalValues";
 
 const Login: FC = () => {
-  const onFinish = (values: { username: string; password: string }) => {
+  const onFinish = (values: ILogForm) => {
     console.log("Received values of form: ", values);
+    submitForm("login", values);
   };
   return (
     <div className="auth__wrapper">
@@ -55,7 +58,7 @@ const Login: FC = () => {
             >
               Войти
             </Button>
-            <Link to="/register">Зарегестрироваться!</Link>
+            <Link to="/register">Зарегистрироваться!</Link>
           </Form.Item>
         </Form>
       </div>

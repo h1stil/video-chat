@@ -8,18 +8,17 @@ import {
 } from "@ant-design/icons";
 
 import "./Register.scss";
+import { IRegForm } from "../../../globalValues";
+import submitForm from "../../drivers/submitForm";
 
 const Register: FC = () => {
   const [form] = Form.useForm();
 
-  const onFinish = (values: {
-    email: string;
-    password: string;
-    confirm: string;
-    nickname: string;
-  }) => {
+  const onFinish = (values: IRegForm) => {
     console.log("Received values of form: ", values);
+    submitForm("register", values);
   };
+
   const registrSuccess = false;
   return (
     <div className="register__wrapper">
@@ -127,7 +126,7 @@ const Register: FC = () => {
 
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Зарегестрироваться
+              Зарегистрироваться
             </Button>
           </Form.Item>
         </Form>
