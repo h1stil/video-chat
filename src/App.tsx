@@ -8,6 +8,7 @@ import Page404 from "./pages/Page404";
 import StartPage from "./pages/StartPage";
 import MainPage from "./modules/MainPage/MainPage";
 
+
 function App() {
   return (
     <div className="wrapper">
