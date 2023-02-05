@@ -2,7 +2,13 @@ import Dialog from "./components/Dialog/Dialog";
 import "./MainPage.scss";
 import { Input } from "antd";
 import ContactList from "./components/ContactList/ContactList";
-import { AudioOutlined, SendOutlined } from "@ant-design/icons";
+import {
+  AudioOutlined,
+  BorderOutlined,
+  LoadingOutlined,
+  SendOutlined,
+} from "@ant-design/icons";
+import { recordMessage } from "./utils/recordMessage";
 
 const Contacts = [
   {
@@ -69,7 +75,10 @@ const MainPage = () => {
             placeholder="Введите текст сообщения"
           />
           <div className="send-message__panel">
-            <AudioOutlined />
+            <div className="panel__record" onClick={() => recordMessage()}>
+              <AudioOutlined className="panel__record_start" />
+              <LoadingOutlined className="panel__record_stop active" />
+            </div>
             <SendOutlined onClick={() => console.log(getMessageValue())} />
           </div>
         </div>
