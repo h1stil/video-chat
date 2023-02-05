@@ -27,17 +27,18 @@ const Login: FC = () => {
           onFinish={onFinish}
         >
           <Form.Item
-            name="username"
+            name="email"
             rules={[
               {
+                type: "email",
                 required: true,
-                message: "Пожалуйста, введите имя пользователя!",
+                message: "Пожалуйста, введите корректный e-mail!",
               },
             ]}
           >
             <Input
               prefix={<UserOutlined className="auth__form_item-icon" />}
-              placeholder="Имя пользователя"
+              placeholder="E-mail пользователя"
             />
           </Form.Item>
           <Form.Item
