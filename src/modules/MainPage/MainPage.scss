@@ -23,3 +23,12 @@
     font-size: 0.8em;
   }
 }
+
+.dialog__send-message {
+  position: relative;
+  .send-message__panel {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+}
