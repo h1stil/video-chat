@@ -4,9 +4,9 @@ import { Input } from "antd";
 import ContactList from "./components/ContactList/ContactList";
 import {
   AudioOutlined,
-  BorderOutlined,
   LoadingOutlined,
   SendOutlined,
+  VideoCameraOutlined,
 } from "@ant-design/icons";
 import { recordMessage } from "./utils/recordMessage";
 
@@ -75,6 +75,7 @@ const MainPage = () => {
             placeholder="Введите текст сообщения"
           />
           <div className="send-message__panel">
+            <VideoCameraOutlined />
             <div className="panel__record" onClick={() => recordMessage()}>
               <AudioOutlined className="panel__record_start" />
               <LoadingOutlined className="panel__record_stop active" />
