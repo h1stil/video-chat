@@ -13,7 +13,8 @@ import { recordMessage } from "./utils/recordMessage";
 const Contacts = [
   {
     user: {
-      avatar: "",
+      avatar:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
       isOnline: true,
       id: 1,
       name: "test1",
