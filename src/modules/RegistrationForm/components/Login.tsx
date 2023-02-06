@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Button, Form, Input } from "antd";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 import "./Login.scss";
 import submitForm from "../../drivers/submitForm";
 import { ILogForm } from "../../../globalValues";
@@ -27,6 +27,20 @@ const Login: FC = () => {
           onFinish={onFinish}
         >
           <Form.Item
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: "Пожалуйста, введите имя пользователя",
+              },
+            ]}
+          >
+            <Input
+              prefix={<UserOutlined className="auth__form_item-icon" />}
+              placeholder="Имя пользователя"
+            />
+          </Form.Item>
+          <Form.Item
             name="email"
             rules={[
               {
@@ -37,7 +51,7 @@ const Login: FC = () => {
             ]}
           >
             <Input
-              prefix={<UserOutlined className="auth__form_item-icon" />}
+              prefix={<MailOutlined className="auth__form_item-icon" />}
               placeholder="E-mail пользователя"
             />
           </Form.Item>
