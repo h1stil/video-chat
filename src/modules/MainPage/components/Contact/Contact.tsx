@@ -1,4 +1,3 @@
-import { url } from "inspector";
 import { FC } from "react";
 import createRandomColor from "../../utils/createRandomAvatart";
 import { IContact } from "../ContactList/ContactList";
@@ -8,10 +7,10 @@ const Contact: FC<IContact> = ({ user, lastMessage, isMe }) => {
   createRandomColor(user.name);
   return (
     <div className="contact__item">
-      {user.avatar === "" ? (
+      {!user.avatar ? (
         <div
           className="contact__avatar"
-          style={{ backgroundColor: createRandomColor(user.name) }}
+          style={{ background: createRandomColor(user.name) }}
         >
           <span className="avatar__first-char">
             {user.name[0].toUpperCase()}

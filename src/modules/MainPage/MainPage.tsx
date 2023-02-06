@@ -6,42 +6,13 @@ import {
   AudioOutlined,
   LoadingOutlined,
   SendOutlined,
+  TeamOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { recordMessage } from "./utils/recordMessage";
+import testUsers from "./utils/testUsers.json";
 
-const Contacts = [
-  {
-    user: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-      isOnline: true,
-      id: 1,
-      name: "test1",
-    },
-    lastMessage: {
-      text: "hellol",
-      created_at: "4:34",
-      isReading: false,
-    },
-
-    isMe: false,
-  },
-  {
-    user: {
-      avatar: "",
-      isOnline: false,
-      id: 2,
-      name: "atest2",
-    },
-    lastMessage: {
-      text: "hellol",
-      created_at: "12:01",
-      isReading: true,
-    },
-    isMe: false,
-  },
-];
+const Contacts = JSON.parse(JSON.stringify(testUsers));
 
 const MainPage = () => {
   const { Search } = Input;
@@ -52,12 +23,16 @@ const MainPage = () => {
     <div className="main">
       <div className="main__contacts">
         <div className="contacts__search">
+          <div className="search__list">
+            <TeamOutlined />
+            <span> Список диалогов</span>
+          </div>
           <Search
             className="contacts__search-input"
-            placeholder="Поиск контактов"
+            placeholder="Поиск среди контактов"
             allowClear
             onSearch={onSearch}
-            style={{ width: 240, padding: "5px 10px" }}
+            style={{ width: 250, padding: "5px 10px" }}
           />
         </div>
         <div className="contacts__list">
@@ -65,10 +40,6 @@ const MainPage = () => {
         </div>
       </div>
       <div className="main__dialog">
-        <div className="dialog__user">
-          <p className="user__name">Username</p>
-          <p className="user__status">online</p>
-        </div>
         <Dialog />
         <div className="dialog__send-message">
           <Input
