@@ -2,13 +2,16 @@
 
 .main {
   display: flex;
-  margin: 15px;
   gap: 20px;
 }
 
 .main__dialog {
   flex-grow: 1;
   margin: 0 20px;
+}
+
+.search__list {
+  padding: 10px;
 }
 
 .contacts__list {
@@ -26,6 +29,7 @@
 
 .dialog__send-message {
   position: relative;
+  margin-top: 25px;
   .send-message__panel {
     position: absolute;
     top: 5px;

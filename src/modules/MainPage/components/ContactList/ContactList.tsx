@@ -2,7 +2,7 @@ import { FC } from "react";
 import Contact from "../Contact/Contact";
 
 interface IUser {
-  nickname: string;
+  name: string;
   avatar: string;
   isOnline: boolean;
   id: number;
