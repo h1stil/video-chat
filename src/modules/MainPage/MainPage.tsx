@@ -16,7 +16,7 @@ const Contacts = [
       avatar: "",
       isOnline: true,
       id: 1,
-      nickname: "test1",
+      name: "test1",
     },
     lastMessage: {
       text: "hellol",
@@ -31,7 +31,7 @@ const Contacts = [
       avatar: "",
       isOnline: false,
       id: 2,
-      nickname: "test2",
+      name: "atest2",
     },
     lastMessage: {
       text: "hellol",
@@ -56,7 +56,7 @@ const MainPage = () => {
             placeholder="Поиск контактов"
             allowClear
             onSearch={onSearch}
-            style={{ width: 200 }}
+            style={{ width: 240, padding: "5px 10px" }}
           />
         </div>
         <div className="contacts__list">
