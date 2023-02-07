@@ -2,8 +2,29 @@ import { Button, Switch, ConfigProvider, Select } from "antd";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
+
+  //заменить изменения состояния кнопки в зависимости от наличия токена
+  const location = useLocation();
+  const [btnLogText, setBtnLogText] = useState(t("logIn"));
+
+  useEffect(() => {
+    const page = window.location.pathname;
+    if (page === "/im") {
+      setBtnLogText(t("logOut"));
+      // console.log(t("logOut"));
+    } else {
+      setBtnLogText(t("logIn"));
+      // console.log(t("logIn"));
+    }
+  }, [location]);
+  //
+
   const onChange = (checked: boolean) => {
     const trans = () => {
       document.documentElement.classList.add("transition");
@@ -21,8 +42,19 @@ const Header = () => {
   };
 
   const handleLanguage = (value: string) => {
-    console.log(`selected ${value}`);
+    switch (value) {
+      case "RU":
+        i18n.changeLanguage("ru");
+        break;
+      case "EN":
+        i18n.changeLanguage("en");
+        break;
+      default:
+        break;
+    }
   };
+
+  // const logText = page;
 
   return (
     <div className="header">
@@ -32,7 +64,7 @@ const Header = () => {
         </Link>
         <Link to="/im">
           <div className="header__chat">
-            <h1>ЧАТ</h1>
+            <h1>{t("txtChat")}</h1>
           </div>
         </Link>
       </div>
@@ -59,7 +91,7 @@ const Header = () => {
           <Switch onChange={onChange} />
         </ConfigProvider>
         <Link to="/login">
-          <Button className="header__login">Войти</Button>
+          <Button className="header__login">{btnLogText}</Button>
         </Link>
       </div>
     </div>

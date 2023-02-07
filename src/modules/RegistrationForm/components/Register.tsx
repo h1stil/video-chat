@@ -10,8 +10,11 @@ import {
 import "./Register.scss";
 import { IRegForm } from "../../../globalValues";
 import submitForm from "../../drivers/submitForm";
+import { useTranslation } from "react-i18next";
 
 const Register: FC = () => {
+  const { t } = useTranslation();
+
   const [form] = Form.useForm();
 
   const onFinish = (values: IRegForm) => {
@@ -22,10 +25,8 @@ const Register: FC = () => {
   const registrSuccess = false;
   return (
     <div className="register__wrapper">
-      <h2 className="register__title">Регистрация</h2>
-      <p className="hint-text register__text">
-        Для входа, Вам необходимо зарегестрироваться
-      </p>
+      <h2 className="register__title">{t("txtRegistration")}</h2>
+      <p className="hint-text register__text">{t("txtHintRegister")}</p>
       {registrSuccess ? (
         <div className="register__success">
           <div>
@@ -33,10 +34,8 @@ const Register: FC = () => {
               style={{ fontSize: "3rem", color: "#08c", margin: "10px 0" }}
             />
           </div>
-          <h3>Подтвердите свой аккаунт</h3>
-          <p className="hint-text">
-            На Вашу почту отправлено письмо с ссылкой на подтверждение!
-          </p>
+          <h3>{t("txtVerify")}</h3>
+          <p className="hint-text">{t("txtEmailConfirm")}</p>
         </div>
       ) : (
         <Form
@@ -52,18 +51,15 @@ const Register: FC = () => {
             rules={[
               {
                 type: "email",
-                message: "Введен неверный адрес электронной почты!",
+                message: t("txtIncorretEmail"),
               },
               {
                 required: true,
-                message: "Пожалуйста, введите адрес электронной почты!",
+                message: t("txtEnterEmail"),
               },
             ]}
           >
-            <Input
-              placeholder="Адрес электронной почты"
-              prefix={<MailOutlined />}
-            />
+            <Input placeholder={t("txtEmail")} prefix={<MailOutlined />} />
           </Form.Item>
 
           <Form.Item
@@ -72,13 +68,13 @@ const Register: FC = () => {
             rules={[
               {
                 required: true,
-                message: "Пожалуйста, введите пароль!",
+                message: t("txtEnterPassword"),
               },
             ]}
             hasFeedback
           >
             <Input.Password
-              placeholder="Введите пароль"
+              placeholder={t("txtPassword")}
               prefix={<LockOutlined />}
             />
           </Form.Item>
@@ -91,20 +87,20 @@ const Register: FC = () => {
             rules={[
               {
                 required: true,
-                message: "Пожалуйста, подтвердите пароль!",
+                message: t("txtConfirmPassword"),
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error("Пароли не совпадают!"));
+                  return Promise.reject(new Error(t("txtPasswordMismatch")));
                 },
               }),
             ]}
           >
             <Input.Password
-              placeholder="Повторите пароль"
+              placeholder={t("txtRepeatPassword")}
               prefix={<LockOutlined />}
             />
           </Form.Item>
@@ -112,21 +108,21 @@ const Register: FC = () => {
           <Form.Item
             name="nickname"
             label=""
-            tooltip="Это имя будут видеть другие пользователи"
+            tooltip={t("txtThisNameVisible")}
             rules={[
               {
                 required: true,
-                message: "Пожалуйста, введите имя пользователя!",
+                message: t("txtEnterUsername"),
                 whitespace: true,
               },
             ]}
           >
-            <Input placeholder="Имя пользователя" prefix={<UserOutlined />} />
+            <Input placeholder={t("txtUsername")} prefix={<UserOutlined />} />
           </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Зарегистрироваться
+              {t("txtRegister")}
             </Button>
           </Form.Item>
         </Form>

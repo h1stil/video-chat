@@ -5,8 +5,11 @@ import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 import "./Login.scss";
 import submitForm from "../../drivers/submitForm";
 import { ILogForm } from "../../../globalValues";
+import { useTranslation } from "react-i18next";
 
 const Login: FC = () => {
+  const { t } = useTranslation();
+
   const onFinish = (values: ILogForm) => {
     console.log("Received values of form: ", values);
     submitForm("login", values);
@@ -14,10 +17,8 @@ const Login: FC = () => {
   return (
     <div className="auth__wrapper">
       <div className="auth__top">
-        <h2 className="auth__top__title">Войти в аккаунт</h2>
-        <p className="hint-text auth__top__text">
-          Пожалуйста, войдите в свой аккаунт
-        </p>
+        <h2 className="auth__top__title">{t("txtEnterAcc")}</h2>
+        <p className="hint-text auth__top__text">{t("txtHintEnter")}</p>
       </div>
       <div className="auth__bot">
         <Form
@@ -31,13 +32,13 @@ const Login: FC = () => {
             rules={[
               {
                 required: true,
-                message: "Пожалуйста, введите имя пользователя",
+                message: t("txtEnterUsername"),
               },
             ]}
           >
             <Input
               prefix={<UserOutlined className="auth__form_item-icon" />}
-              placeholder="Имя пользователя"
+              placeholder={t("txtUsername")}
             />
           </Form.Item>
           <Form.Item
@@ -46,23 +47,23 @@ const Login: FC = () => {
               {
                 type: "email",
                 required: true,
-                message: "Пожалуйста, введите корректный e-mail!",
+                message: t("txtEnterEmail"),
               },
             ]}
           >
             <Input
               prefix={<MailOutlined className="auth__form_item-icon" />}
-              placeholder="E-mail пользователя"
+              placeholder={t("txtUserEmail")}
             />
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, message: "Пожалуйста, введите пароль!" }]}
+            rules={[{ required: true, message: t("txtEnterPassword") }]}
           >
             <Input
               prefix={<LockOutlined className="auth__form_item-icon" />}
               type="password"
-              placeholder="Пароль"
+              placeholder={t("txtPassword")}
             />
           </Form.Item>
           <Form.Item>
@@ -71,9 +72,9 @@ const Login: FC = () => {
               htmlType="submit"
               className="auth__form_login-button"
             >
-              Войти
+              {t("txtEnter")}
             </Button>
-            <Link to="/register">Зарегистрироваться!</Link>
+            <Link to="/register">{t("txtRegister")}</Link>
           </Form.Item>
         </Form>
       </div>
