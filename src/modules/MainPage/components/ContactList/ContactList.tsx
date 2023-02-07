@@ -1,5 +1,7 @@
 import { FC } from "react";
 import Contact from "../Contact/Contact";
+import { TeamOutlined } from "@ant-design/icons";
+import { Input, Empty } from "antd";
 
 interface IUser {
   name: string;
@@ -20,22 +22,49 @@ export interface IContact {
   isMe: boolean;
 }
 
-interface PostsProps {
+export interface PostsProps {
   props: IContact[];
   userId: number;
+  onSearch?: (value: string) => void;
+  inputValue?: string;
 }
 
-const ContactList: FC<PostsProps> = ({ props, userId }) => {
+const ContactList: FC<PostsProps> = ({ props, userId, onSearch }) => {
+  const { Search } = Input;
+
   return (
-    <div className="contacts">
-      {props.map((item) => (
-        <Contact
-          key={item.user.id}
-          user={item.user}
-          lastMessage={item.lastMessage}
-          isMe={item.user.id === userId}
+    <div>
+      <div className="contacts__search">
+        <div className="search__list">
+          <TeamOutlined />
+          <span> Список диалогов</span>
+        </div>
+        <Search
+          className="contacts__search-input"
+          placeholder="Поиск среди контактов"
+          allowClear
+          onChange={(e) => onSearch!(e.target.value)}
+          onSearch={onSearch}
+          style={{ width: 298, padding: "5px 10px" }}
         />
-      ))}
+      </div>
+      <div className="contacts">
+        {props.length ? (
+          props.map((item) => (
+            <Contact
+              key={item.user.id}
+              user={item.user}
+              lastMessage={item.lastMessage}
+              isMe={item.user.id === userId}
+            />
+          ))
+        ) : (
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description="Не найдено"
+          />
+        )}
+      </div>
     </div>
   );
 };
