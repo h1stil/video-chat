@@ -5,7 +5,7 @@ export interface IRegForm {
   email: string;
   password: string;
   confirm: string;
-  nickname: string;
+  nick: string;
 }
 
 export interface ILogForm {

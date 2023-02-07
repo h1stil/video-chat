@@ -106,7 +106,7 @@ const Register: FC = () => {
           </Form.Item>
 
           <Form.Item
-            name="nickname"
+            name="name"
             label=""
             tooltip={t("txtThisNameVisible")}
             rules={[
