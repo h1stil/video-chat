@@ -16,6 +16,8 @@
 
 .contacts__list {
   margin: 10px 0;
+  overflow: auto;
+  height: calc(100vh - 240px);
 }
 
 .dialog__user {
@@ -29,18 +31,32 @@
 
 .dialog__send-message {
   position: relative;
-  margin-top: 25px;
+  margin: 20px auto;
+  width: 80%;
+  .send-message__value {
+    padding: 10px;
+    width: 80%;
+  }
   .send-message__panel {
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: 50%;
+    right: 14%;
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    transform: translate(-14%, -50%);
+    .panel__video,
+    .panel__record {
+      cursor: pointer;
+      transition: opacity 0.15s linear;
+      opacity: 0.4;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 }
 
 .panel__record {
-  cursor: pointer;
   .active {
     display: none;
   }
