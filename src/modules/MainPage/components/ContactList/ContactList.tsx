@@ -25,7 +25,7 @@ export interface IContact {
 export interface PostsProps {
   props: IContact[];
   userId: number;
-  onSearch?: (value: string) => void;
+  onSearch: (value: string) => void;
   inputValue?: string;
 }
 
@@ -43,7 +43,7 @@ const ContactList: FC<PostsProps> = ({ props, userId, onSearch }) => {
           className="contacts__search-input"
           placeholder="Поиск среди контактов"
           allowClear
-          onChange={(e) => onSearch!(e.target.value)}
+          onChange={(e) => onSearch(e.target.value)}
           onSearch={onSearch}
           style={{ width: 298, padding: "5px 10px" }}
         />
