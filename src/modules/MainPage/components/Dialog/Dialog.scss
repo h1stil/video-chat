@@ -1,7 +1,3 @@
-.message__container {
-  height: 92%;
-}
-
 .dialog__user {
   border-bottom: 2px solid rgba(0, 0, 0, 0.04);
 }
@@ -27,6 +23,5 @@
 
 .dialog__chat {
   overflow: auto;
-  height: 60vh;
-  transition: all 0.4s;
+  height: calc(100vh - 300px);
 }
