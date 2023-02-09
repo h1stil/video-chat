@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Contact from "../Contact/Contact";
-import { TeamOutlined } from "@ant-design/icons";
 import { Input, Empty } from "antd";
+import AllUsersModal from "../AllUsersModal/AllUsersModal";
 
 interface IUser {
   name: string;
@@ -36,8 +36,7 @@ const ContactList: FC<PostsProps> = ({ props, userId, onSearch }) => {
     <div>
       <div className="contacts__search">
         <div className="search__list">
-          <TeamOutlined />
-          <span> Список диалогов</span>
+          <AllUsersModal />
         </div>
         <Search
           className="contacts__search-input"
