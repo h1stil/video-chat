@@ -16,7 +16,7 @@ const Contacts = JSON.parse(JSON.stringify(testUsers));
 
 const MainPage = () => {
   const [sendMessage, setSendMessage] = useState("");
-  const onSearch = (value: string) => console.log(value);
+  const onSearch = (value: string) => value;
   const [inputValue] = useState("");
 
   return (

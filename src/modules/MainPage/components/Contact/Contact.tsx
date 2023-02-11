@@ -31,14 +31,18 @@ const Contact: FC<IContact> = ({ user, lastMessage, isMe }) => {
       )}
       <div className="contact__text">
         <p className="contact__name">{user.name}</p>
-        <p className="contact__last-message">{lastMessage.text}</p>
+        {lastMessage ? (
+          <p className="contact__last-message">{lastMessage.text}</p>
+        ) : null}
       </div>
       {!isMe ? (
-        lastMessage.isReading ? (
-          <span className="message__checked">&#10003;&#10003;</span>
-        ) : (
-          <span className="message__checked">&#10003;</span>
-        )
+        lastMessage ? (
+          lastMessage.isReading ? (
+            <span className="message__checked">&#10003;&#10003;</span>
+          ) : (
+            <span className="message__checked">&#10003;</span>
+          )
+        ) : null
       ) : null}
     </div>
   );

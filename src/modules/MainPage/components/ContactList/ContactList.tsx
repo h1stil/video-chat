@@ -18,7 +18,7 @@ interface ILastMessage {
 
 export interface IContact {
   user: IUser;
-  lastMessage: ILastMessage;
+  lastMessage: ILastMessage | null;
   isMe: boolean;
 }
 
