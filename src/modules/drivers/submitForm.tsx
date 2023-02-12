@@ -20,7 +20,7 @@ export default async function submitForm(
       body: JSON.stringify(values),
     });
     if (response.ok) {
-      // console.log(response.json());
+      console.log(response);
     } else {
       throw response.status;
     }

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Button, Form, Input } from "antd";
 import {
   LockOutlined,
@@ -11,19 +11,24 @@ import "./Register.scss";
 import { IRegForm } from "../../../values/globalValues";
 import submitForm from "../../drivers/submitForm";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register: FC = () => {
   const { t } = useTranslation();
+  const [registrSuccess, setRegistrSuccess] = useState(false);
 
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  const onFinish = (values: IRegForm) => {
+  const onFinish = async (values: IRegForm) => {
     // console.log("Received values of form: ", values);
-    submitForm("register", values);
+    const respCode = await submitForm("register", values);
+    if (respCode === 201) {
+      setRegistrSuccess(true);
+      setTimeout(() => navigate("/login"), 4000);
+    }
   };
 
-  const registrSuccess = false;
   return (
     <div className="register__wrapper">
       <h2 className="register__title">{t("txtRegistration")}</h2>
@@ -71,6 +76,7 @@ const Register: FC = () => {
                 required: true,
                 message: t("txtEnterPassword"),
               },
+              { min: 3, message: t("txtPassMin3Sym") },
             ]}
             hasFeedback
           >
@@ -122,6 +128,7 @@ const Register: FC = () => {
           </Form.Item>
 
           <Form.Item>
+            <Link to="/login">{t("logIn")}</Link>
             <Button
               type="primary"
               htmlType="submit"
@@ -129,7 +136,6 @@ const Register: FC = () => {
             >
               {t("txtRegister")}
             </Button>
-            <Link to="/login">{t("logIn")}</Link>
           </Form.Item>
         </Form>
       )}

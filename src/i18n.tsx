@@ -36,6 +36,7 @@ export const resources = {
       txtPasswordMismatch: "Пароли не совпадают!",
       txtRepeatPassword: "Повторите пароль",
       txtThisNameVisible: "Это имя будут видеть другие пользователи",
+      txtPassMin3Sym: "Минимальная длина пароля 3 сивола",
 
       //404
       txtPageNotFound: "Страница не найдена...",
@@ -56,7 +57,7 @@ export const resources = {
       txtUserEmail: "User E-mail",
       txtEnterPassword: "Please enter password!",
       txtPassword: "Password",
-      txtEnter: "Enter",
+      txtEnter: "Login",
       txtRegister: "Register!",
       ErrorLogin: "Incorrect username or password",
 
@@ -66,12 +67,13 @@ export const resources = {
       txtVerify: "Verify your account",
       txtEmailConfirm:
         "An email with a confirmation link has been sent to your email!",
-      txtIncorretEmail: "Incorrect password!",
+      txtIncorretEmail: "Incorrect email!",
       txtEmail: "Email",
       txtConfirmPassword: "Please confirm password",
       txtPasswordMismatch: "Password mismatch",
       txtRepeatPassword: "Repeat password",
       txtThisNameVisible: "This name will be visible to other users",
+      txtPassMin3Sym: "Password must be minimum 3 symbols",
 
       //404
       txtPageNotFound: "Page not found...",

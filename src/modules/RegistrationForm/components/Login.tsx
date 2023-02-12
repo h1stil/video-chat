@@ -6,6 +6,7 @@ import "./Login.scss";
 import submitForm from "../../drivers/submitForm";
 import { ILogForm } from "../../../values/globalValues";
 import { useTranslation } from "react-i18next";
+import checkOnLogin from "../../drivers/checkBan";
 
 const Login: FC = () => {
   const { t } = useTranslation();
@@ -15,8 +16,10 @@ const Login: FC = () => {
     const errText = document.getElementById("errorLogin");
     const errCode = await submitForm("login", values);
     if (errCode === 201) {
-      window.localStorage.setItem("AUTH", "true");
-      setTimeout(() => navigate("/im"), 100);
+      if (checkOnLogin() === true) {
+        window.localStorage.setItem("AUTH", "true");
+        setTimeout(() => navigate("/im"), 100);
+      }
     }
     if (errCode === 401) {
       window.localStorage.removeItem("AUTH");
