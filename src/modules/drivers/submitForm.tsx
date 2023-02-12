@@ -1,3 +1,4 @@
+import { devEnter } from "../../values/devValues";
 import {
   serverURI,
   portData,
@@ -19,12 +20,14 @@ export default async function submitForm(
       },
       body: JSON.stringify(values),
     });
-    if (response.ok) {
-      console.log(response);
+    if (response.ok || devEnter) {
+      // const { jwt_token } = response.json();
+      // console.log(jwt_token);
+      // console.log(response);
     } else {
       throw response.status;
     }
-    return response.status;
+    return devEnter ? 201 : response.status;
   } catch (err) {
     return err;
   }

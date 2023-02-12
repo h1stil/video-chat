@@ -4,6 +4,7 @@ import "./Header.scss";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { devEnter } from "../../values/devValues";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -58,7 +59,7 @@ const Header = () => {
   };
 
   const onClickChat = () => {
-    if (window.localStorage.getItem("AUTH")) {
+    if (window.localStorage.getItem("AUTH") || devEnter) {
       navigate("/im");
     } else {
       navigate("/login");

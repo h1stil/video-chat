@@ -12,6 +12,7 @@ import testUsers from "./utils/testUsers.json";
 import { useState, useEffect } from "react";
 import ContainerDialog from "./utils/ContainerDialogs";
 import { useNavigate } from "react-router-dom";
+import { devEnter } from "../../values/devValues";
 
 const Contacts = JSON.parse(JSON.stringify(testUsers));
 
@@ -22,7 +23,7 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!window.localStorage.getItem("AUTH")) {
+    if (!(window.localStorage.getItem("AUTH") || devEnter)) {
       navigate("/login");
     }
   }, [window.localStorage]);
