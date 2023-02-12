@@ -14,5 +14,5 @@ interface Props {
 export const RoomProvider: React.FunctionComponent<Props> = ({
   children,
 }: Props) => {
-  return <RoomContext.Provider value={ws}>{children}</RoomContext.Provider>;
+  return <RoomContext.Provider value={{ ws }}>{children}</RoomContext.Provider>;
 };
