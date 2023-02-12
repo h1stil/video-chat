@@ -1,5 +1,9 @@
 .startpage__pic {
-  max-width: 100%;
   display: block;
   margin: auto;
+}
+
+.startpage__mainzone {
+  display: flex;
+  height: 100%;
 }

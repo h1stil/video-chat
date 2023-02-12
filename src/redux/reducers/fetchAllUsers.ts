@@ -9,7 +9,7 @@ export const fetchAllUsersSlice = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(allUsersSlice.actions.usersFetching());
     const response = await axios.get<User[]>(
-      `http://${process.env.HOST}:${process.env.PORT}/users`,
+      `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/users`,
       {
         headers: {
           authorization: `Bearer ${adminToken}`,
