@@ -7,6 +7,7 @@ import Header from "./modules/Header/Header";
 import Page404 from "./pages/Page404";
 import StartPage from "./pages/StartPage";
 import MainPage from "./modules/MainPage/MainPage";
+import Video from "./pages/video";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/im" element={<MainPage />} />
+          <Route path="/video" element={<Video />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
