@@ -1,9 +1,11 @@
+import { JoinButton } from "../modules/Buttons/JoinButton";
 import "./video.css";
 
 const Video = () => {
   return (
     <div>
-      <img className="startpage__pic" src="../../../001.png"></img>
+      <h1>VIDEO</h1>
+      <JoinButton />
     </div>
   );
 };

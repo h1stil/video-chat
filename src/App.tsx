@@ -8,8 +8,15 @@ import Page404 from "./pages/Page404";
 import StartPage from "./pages/StartPage";
 import MainPage from "./modules/MainPage/MainPage";
 import Video from "./pages/video";
+import { useEffect } from "react";
+import socketIOClient from "socket.io-client";
+
+const WS = "http://localhost:3001";
 
 function App() {
+  useEffect(() => {
+    socketIOClient(WS);
+  }, []);
   return (
     <div className="wrapper">
       <Header />
