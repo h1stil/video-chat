@@ -9,8 +9,9 @@ import {
 } from "@ant-design/icons";
 import { recordMessage } from "./utils/recordMessage";
 import testUsers from "./utils/testUsers.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ContainerDialog from "./utils/ContainerDialogs";
+import { useNavigate } from "react-router-dom";
 
 const Contacts = JSON.parse(JSON.stringify(testUsers));
 
@@ -18,6 +19,13 @@ const MainPage = () => {
   const [sendMessage, setSendMessage] = useState("");
   const onSearch = (value: string) => value;
   const [inputValue] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!window.localStorage.getItem("AUTH")) {
+      navigate("/login");
+    }
+  }, [window.localStorage]);
 
   return (
     <div className="main">

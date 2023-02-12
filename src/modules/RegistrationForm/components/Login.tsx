@@ -1,24 +1,39 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 import "./Login.scss";
 import submitForm from "../../drivers/submitForm";
-import { ILogForm } from "../../../globalValues";
+import { ILogForm } from "../../../values/globalValues";
 import { useTranslation } from "react-i18next";
 
 const Login: FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
-  const onFinish = (values: ILogForm) => {
-    console.log("Received values of form: ", values);
-    submitForm("login", values);
+  const onFinish = async (values: ILogForm) => {
+    const errText = document.getElementById("errorLogin");
+    const errCode = await submitForm("login", values);
+    if (errCode === 201) {
+      window.localStorage.setItem("AUTH", "true");
+      setTimeout(() => navigate("/im"), 100);
+    }
+    if (errCode === 401) {
+      window.localStorage.removeItem("AUTH");
+      if (errText) errText.style.display = "block";
+    } else {
+      if (errText) errText.style.display = "none";
+    }
   };
+
   return (
     <div className="auth__wrapper">
       <div className="auth__top">
         <h2 className="auth__top__title">{t("txtEnterAcc")}</h2>
         <p className="hint-text auth__top__text">{t("txtHintEnter")}</p>
+        <div className="err-text ant-form-item-explain-error" id="errorLogin">
+          {t("txtErrorLogin")}
+        </div>
       </div>
       <div className="auth__bot">
         <Form
