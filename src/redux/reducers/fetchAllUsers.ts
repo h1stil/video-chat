@@ -8,11 +8,14 @@ const adminToken =
 export const fetchAllUsersSlice = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(allUsersSlice.actions.usersFetching());
-    const response = await axios.get<User[]>("http://localhost:5000/users", {
-      headers: {
-        authorization: `Bearer ${adminToken}`,
-      },
-    });
+    const response = await axios.get<User[]>(
+      `http://${process.env.HOST}:${process.env.PORT}/users`,
+      {
+        headers: {
+          authorization: `Bearer ${adminToken}`,
+        },
+      }
+    );
 
     dispatch(allUsersSlice.actions.usersFetchingSuccess(response.data));
   } catch (e) {
