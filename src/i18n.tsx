@@ -22,10 +22,11 @@ export const resources = {
       txtPassword: "Пароль",
       txtEnter: "Войти",
       txtRegister: "Зарегистрироваться!",
+      txtErrorLogin: "Введен неверный логин или пароль",
 
       //registration
       txtRegistration: "Регистрация",
-      txtHintRegister: "Для входа, Вам необходимо зарегестрироваться",
+      txtHintRegister: "Для входа, Вам необходимо зарегистрироваться",
       txtVerify: "Подтвердите свой аккаунт",
       txtEmailConfirm:
         "На Вашу почту отправлено письмо с ссылкой на подтверждение!",
@@ -57,6 +58,7 @@ export const resources = {
       txtPassword: "Password",
       txtEnter: "Enter",
       txtRegister: "Register!",
+      ErrorLogin: "Incorrect username or password",
 
       //registration
       txtRegistration: "Registration",
@@ -81,8 +83,6 @@ i18n.use(initReactI18next).init({
   resources,
   lng: "ru",
   fallbackLng: "en",
-  // ns: ["ns1", "ns2"],
-  // defaultNS,
 });
 
 export default i18n;

@@ -8,9 +8,10 @@ import {
 } from "@ant-design/icons";
 
 import "./Register.scss";
-import { IRegForm } from "../../../globalValues";
+import { IRegForm } from "../../../values/globalValues";
 import submitForm from "../../drivers/submitForm";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Register: FC = () => {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ const Register: FC = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: IRegForm) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
     submitForm("register", values);
   };
 
@@ -121,9 +122,14 @@ const Register: FC = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="auth__form_reg-button"
+            >
               {t("txtRegister")}
             </Button>
+            <Link to="/login">{t("logIn")}</Link>
           </Form.Item>
         </Form>
       )}
