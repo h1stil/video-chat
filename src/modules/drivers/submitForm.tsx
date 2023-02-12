@@ -9,7 +9,7 @@ export default async function submitForm(
 
   try {
     const response = await fetch(
-      `https://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}${path}`,
+      `${process.env.REACT_APP_HTTP}://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}${path}`,
       {
         method: "POST",
         headers: {
