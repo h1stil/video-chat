@@ -13,9 +13,26 @@ const resources = {
   },
 };
 
-i18next.use(initReactI18next).use(LanguageDetector).init({
-  resources,
-  lng: "RU",
-});
+const options = {
+  order: [
+    "cookie",
+    "localStorage",
+    "sessionStorage",
+    "navigator",
+    "htmlTag",
+    "path",
+    "subdomain",
+  ],
+};
+
+i18next
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .init({
+    detection: options,
+    fallbackLng: "RU",
+    supportedLngs: ["RU", "EN"],
+    resources,
+  });
 
 export default i18next;
