@@ -13,8 +13,10 @@ import ContainerDialog from "./utils/ContainerDialogs";
 import { useNavigate } from "react-router-dom";
 import { devEnter } from "../../values/devValues";
 import { IUser } from "./components/ContactList/ContactList";
+import { useTranslation } from "react-i18next";
 
 const MainPage = () => {
+  const { t } = useTranslation();
   let Contacts: IUser[];
   localStorage.getItem("friends")
     ? (Contacts = JSON.parse(localStorage.getItem("friends")!))
@@ -43,7 +45,7 @@ const MainPage = () => {
         <div className="dialog__send-message">
           <Input
             className="send-message__value"
-            placeholder="Введите текст сообщения"
+            placeholder={t("txtEnterMessage") || "Введите текст сообщения"}
             onChange={(e) => {
               setSendMessage(e.target.value);
             }}

@@ -9,8 +9,10 @@ import { TeamOutlined } from "@ant-design/icons";
 import Contact from "../Contact/Contact";
 import { Input } from "antd";
 import { IUser } from "../ContactList/ContactList";
+import { useTranslation } from "react-i18next";
 
 const AllUsersModal = () => {
+  const { t } = useTranslation();
   const dispath = useAppDispatch();
   const { allUsers } = useAppSelector((state) => state.allUsers);
 
@@ -56,7 +58,7 @@ const AllUsersModal = () => {
     <div className="list__all-users">
       <div className="all-users__button" onClick={handleOpen}>
         <TeamOutlined />
-        <span> Список всех пользователей</span>
+        <span>{t("txtListUsers")}</span>
       </div>
       <Modal
         open={open}
@@ -68,7 +70,9 @@ const AllUsersModal = () => {
           <div>
             <Search
               className="all-users__search-input"
-              placeholder="Поиск среди пользователей"
+              placeholder={
+                t("txtSearchWithinUsers") || "Поиск среди пользователей"
+              }
               allowClear
               onChange={(e) => {
                 onSearch(e.target.value);

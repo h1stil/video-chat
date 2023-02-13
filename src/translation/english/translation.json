@@ -1,0 +1,40 @@
+{
+  "logIn": "Login",
+  "logOut": "Logout",
+  "txtChat": "CHAT",
+
+  "txtEnterAcc": "Login your account",
+  "txtHintEnter": "Please login to your account",
+  "txtEnterUsername": "Please enter a username",
+  "txtUsername": "Username",
+  "txtEnterEmail": "Please enter a valid e-mail!",
+  "txtUserEmail": "User E-mail",
+  "txtEnterPassword": "Please enter password!",
+  "txtPassword": "Password",
+  "txtEnter": "Login",
+  "txtRegister": "Register!",
+  "ErrorLogin": "Incorrect username or password",
+
+  "txtRegistration": "Registration",
+  "txtHintRegister": "To enter, you need to register",
+  "txtVerify": "Verify your account",
+  "txtEmailConfirm": "An email with a confirmation link has been sent to your email!",
+  "txtIncorretEmail": "Incorrect email!",
+  "txtEmail": "Email",
+  "txtConfirmPassword": "Please confirm password",
+  "txtPasswordMismatch": "Password mismatch",
+  "txtRepeatPassword": "Repeat password",
+  "txtThisNameVisible": "This name will be visible to other users",
+  "txtPassMin3Sym": "Password must be minimum 3 symbols",
+
+  "txtPageNotFound": "Page not found...",
+
+  "txtEnterMessage": "Enter message",
+  "txtListUsers": "List of all users",
+  "txtSearchWithinUsers": "Search within users",
+  "txtSearchWithinContacts": "Search in contacts",
+  "txtNotFound": "Nothing found",
+  "txtOnline": "online",
+  "txtOffline": "offline",
+  "txtNoMessages": "No messages"
+}

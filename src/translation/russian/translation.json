@@ -1,0 +1,40 @@
+{
+  "logIn": "Войти",
+  "logOut": "Выйти",
+  "txtChat": "ЧАТ",
+
+  "txtEnterAcc": "Войти в аккаунт",
+  "txtHintEnter": "Пожалуйста, войдите в свой аккаунт",
+  "txtEnterUsername": "Пожалуйста, введите имя пользователя",
+  "txtUsername": "Имя пользователя",
+  "txtEnterEmail": "Пожалуйста, введите корректный e-mail",
+  "txtUserEmail": "E-mail пользователя",
+  "txtEnterPassword": "Пожалуйста, введите пароль",
+  "txtPassword": "Пароль",
+  "txtEnter": "Войти",
+  "txtRegister": "Зарегистрироваться",
+  "txtErrorLogin": "Введен неверный логин или пароль",
+
+  "txtRegistration": "Регистрация",
+  "txtHintRegister": "Для входа, Вам необходимо зарегистрироваться",
+  "txtVerify": "Подтвердите свой аккаунт",
+  "txtEmailConfirm": "На Вашу почту отправлено письмо с ссылкой на подтверждение",
+  "txtIncorretEmail": "Введен неверный адрес электронной почты",
+  "txtEmail": "Адрес электронной почты",
+  "txtConfirmPassword": "Пожалуйста, подтвердите пароль",
+  "txtPasswordMismatch": "Пароли не совпадают",
+  "txtRepeatPassword": "Повторите пароль",
+  "txtThisNameVisible": "Это имя будут видеть другие пользователи",
+  "txtPassMin3Sym": "Минимальная длина пароля 3 сивола",
+
+  "txtPageNotFound": "Страница не найдена...",
+
+  "txtEnterMessage": "Введите текст сообщения",
+  "txtListUsers": "Список всех пользователей",
+  "txtSearchWithinUsers": "Поиск среди пользователей",
+  "txtSearchWithinContacts": "Поиск среди контактов",
+  "txtNotFound": "Не найдено",
+  "txtOnline": "в сети",
+  "txtOffline": "не в сети",
+  "txtNoMessages": "Нет сообщений"
+}

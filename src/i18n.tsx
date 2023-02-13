@@ -1,0 +1,21 @@
+import i18next from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import translEng from "./translation/english/translation.json";
+import translRus from "./translation/russian/translation.json";
+
+const resources = {
+  RU: {
+    translation: translRus,
+  },
+  EN: {
+    translation: translEng,
+  },
+};
+
+i18next.use(initReactI18next).use(LanguageDetector).init({
+  resources,
+  lng: "RU",
+});
+
+export default i18next;

@@ -2,6 +2,7 @@ import { FC } from "react";
 import Contact from "../Contact/Contact";
 import { Input, Empty } from "antd";
 import AllUsersModal from "../AllUsersModal/AllUsersModal";
+import { useTranslation } from "react-i18next";
 
 export interface IUser {
   name: string;
@@ -21,6 +22,7 @@ export interface PostsProps {
 }
 
 const ContactList: FC<PostsProps> = ({ props, onSearch }) => {
+  const { t } = useTranslation();
   const { Search } = Input;
   console.log(props);
 
@@ -32,7 +34,7 @@ const ContactList: FC<PostsProps> = ({ props, onSearch }) => {
         </div>
         <Search
           className="contacts__search-input"
-          placeholder="Поиск среди контактов"
+          placeholder={t("txtSearchWithinContacts") || "Поиск среди контактов"}
           allowClear
           onChange={(e) => onSearch(e.target.value)}
           onSearch={onSearch}
@@ -45,7 +47,7 @@ const ContactList: FC<PostsProps> = ({ props, onSearch }) => {
         ) : (
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
-            description="Не найдено"
+            description={t("txtNotFound")}
           />
         )}
       </div>

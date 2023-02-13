@@ -57,15 +57,18 @@ const Register: FC = () => {
             rules={[
               {
                 type: "email",
-                message: t("txtIncorretEmail"),
+                message: t("txtIncorretEmail") || "2",
               },
               {
                 required: true,
-                message: t("txtEnterEmail"),
+                message: t("txtEnterEmail") || "2",
               },
             ]}
           >
-            <Input placeholder={t("txtEmail")} prefix={<MailOutlined />} />
+            <Input
+              placeholder={t("txtEmail") || "2"}
+              prefix={<MailOutlined />}
+            />
           </Form.Item>
 
           <Form.Item
@@ -74,14 +77,14 @@ const Register: FC = () => {
             rules={[
               {
                 required: true,
-                message: t("txtEnterPassword"),
+                message: t("txtEnterPassword") || "2",
               },
-              { min: 3, message: t("txtPassMin3Sym") },
+              { min: 3, message: t("txtPassMin3Sym") || "2" },
             ]}
             hasFeedback
           >
             <Input.Password
-              placeholder={t("txtPassword")}
+              placeholder={t("txtPassword") || "2"}
               prefix={<LockOutlined />}
             />
           </Form.Item>
@@ -94,20 +97,22 @@ const Register: FC = () => {
             rules={[
               {
                 required: true,
-                message: t("txtConfirmPassword"),
+                message: t("txtConfirmPassword") || "2",
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error(t("txtPasswordMismatch")));
+                  return Promise.reject(
+                    new Error(t("txtPasswordMismatch") || "2") || "2"
+                  );
                 },
               }),
             ]}
           >
             <Input.Password
-              placeholder={t("txtRepeatPassword")}
+              placeholder={t("txtRepeatPassword") || "2"}
               prefix={<LockOutlined />}
             />
           </Form.Item>
@@ -119,12 +124,15 @@ const Register: FC = () => {
             rules={[
               {
                 required: true,
-                message: t("txtEnterUsername"),
+                message: t("txtEnterUsername") || "2",
                 whitespace: true,
               },
             ]}
           >
-            <Input placeholder={t("txtUsername")} prefix={<UserOutlined />} />
+            <Input
+              placeholder={t("txtUsername") || "2"}
+              prefix={<UserOutlined />}
+            />
           </Form.Item>
 
           <Form.Item>

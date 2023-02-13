@@ -40,38 +40,38 @@ const Login: FC = () => {
             rules={[
               {
                 required: true,
-                message: t("txtEnterUsername"),
+                message: t("txtEnterUsername") || "2",
               },
             ]}
           >
             <Input
               prefix={<UserOutlined className="auth__form_item-icon" />}
-              placeholder={t("txtUsername")}
+              placeholder={t("txtUsername") || "2"}
             />
           </Form.Item>
           <Form.Item
             name="email"
             rules={[
               {
-                type: "email",
+                type: "email" || "2",
                 required: true,
-                message: t("txtEnterEmail"),
+                message: t("txtEnterEmail") || "2",
               },
             ]}
           >
             <Input
               prefix={<MailOutlined className="auth__form_item-icon" />}
-              placeholder={t("txtUserEmail")}
+              placeholder={t("txtUserEmail") || "2"}
             />
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, message: t("txtEnterPassword") }]}
+            rules={[{ required: true, message: t("txtEnterPassword") || "2" }]}
           >
             <Input
               prefix={<LockOutlined className="auth__form_item-icon" />}
               type="password"
-              placeholder={t("txtPassword")}
+              placeholder={t("txtPassword") || "2"}
             />
           </Form.Item>
           <Form.Item>
