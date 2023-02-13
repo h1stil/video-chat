@@ -3,34 +3,26 @@ import Contact from "../Contact/Contact";
 import { Input, Empty } from "antd";
 import AllUsersModal from "../AllUsersModal/AllUsersModal";
 
-interface IUser {
+export interface IUser {
   name: string;
   avatar: string;
   isOnline: boolean;
   id: number;
 }
 
-interface ILastMessage {
-  text: string;
-  isReading: boolean;
-  created_at: string;
-}
-
 export interface IContact {
   user: IUser;
-  lastMessage: ILastMessage | null;
-  isMe: boolean;
 }
 
 export interface PostsProps {
-  props: IContact[];
-  userId: number;
+  props: IUser[];
   onSearch: (value: string) => void;
   inputValue?: string;
 }
 
-const ContactList: FC<PostsProps> = ({ props, userId, onSearch }) => {
+const ContactList: FC<PostsProps> = ({ props, onSearch }) => {
   const { Search } = Input;
+  console.log(props);
 
   return (
     <div>
@@ -49,14 +41,7 @@ const ContactList: FC<PostsProps> = ({ props, userId, onSearch }) => {
       </div>
       <div className="contacts">
         {props.length ? (
-          props.map((item) => (
-            <Contact
-              key={item.user.id}
-              user={item.user}
-              lastMessage={item.lastMessage}
-              isMe={item.user.id === userId}
-            />
-          ))
+          props.map((item) => <Contact key={item.id} user={item} />)
         ) : (
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}

@@ -3,20 +3,23 @@ import "./MainPage.scss";
 import { Input } from "antd";
 import {
   AudioOutlined,
-  LoadingOutlined,
+  AudioMutedOutlined,
   SendOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { recordMessage } from "./utils/recordMessage";
-import testUsers from "./utils/testUsers.json";
 import { useState, useEffect } from "react";
 import ContainerDialog from "./utils/ContainerDialogs";
 import { useNavigate } from "react-router-dom";
 import { devEnter } from "../../values/devValues";
-
-const Contacts = JSON.parse(JSON.stringify(testUsers));
+import { IUser } from "./components/ContactList/ContactList";
 
 const MainPage = () => {
+  let Contacts: IUser[];
+  localStorage.getItem("friends")
+    ? (Contacts = JSON.parse(localStorage.getItem("friends")!))
+    : (Contacts = []);
+
   const [sendMessage, setSendMessage] = useState("");
   const onSearch = (value: string) => value;
   const [inputValue] = useState("");
@@ -32,7 +35,6 @@ const MainPage = () => {
     <div className="main">
       <ContainerDialog
         props={Contacts}
-        userId={1}
         onSearch={onSearch}
         inputValue={inputValue}
       />
@@ -53,7 +55,7 @@ const MainPage = () => {
             ) : (
               <div className="panel__record" onClick={() => recordMessage()}>
                 <AudioOutlined className="panel__record_start" />
-                <LoadingOutlined className="panel__record_stop active" />
+                <AudioMutedOutlined className="panel__record_stop active" />
               </div>
             )}
           </div>

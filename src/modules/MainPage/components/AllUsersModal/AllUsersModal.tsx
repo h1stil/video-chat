@@ -8,6 +8,7 @@ import Modal from "@mui/material/Modal";
 import { TeamOutlined } from "@ant-design/icons";
 import Contact from "../Contact/Contact";
 import { Input } from "antd";
+import { IUser } from "../ContactList/ContactList";
 
 const AllUsersModal = () => {
   const dispath = useAppDispatch();
@@ -37,6 +38,19 @@ const AllUsersModal = () => {
   const onSearch = (value: string) => value;
   const { Search } = Input;
   const [inputValue, setInputValue] = useState("");
+
+  const addToFriends = (user: IUser) => {
+    let friends: IUser[];
+    localStorage.getItem("friends")
+      ? (friends = JSON.parse(localStorage.getItem("friends")!))
+      : (friends = []);
+    if (friends.some(({ id }) => id === user.id)) {
+      null;
+    } else {
+      friends.push(user);
+    }
+    localStorage.setItem("friends", JSON.stringify(friends));
+  };
 
   return (
     <div className="list__all-users">
@@ -73,7 +87,14 @@ const AllUsersModal = () => {
                 <div
                   className="all-users__item"
                   key={user.id}
-                  onClick={() => console.log(user)}
+                  onClick={() =>
+                    addToFriends({
+                      avatar: user.avatar!,
+                      name: user.name,
+                      id: user.id,
+                      isOnline: false,
+                    })
+                  }
                 >
                   <Contact
                     user={{
@@ -82,8 +103,6 @@ const AllUsersModal = () => {
                       name: user.name,
                       isOnline: false,
                     }}
-                    lastMessage={null}
-                    isMe={false}
                   />
                 </div>
               ))}
