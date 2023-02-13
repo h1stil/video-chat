@@ -36,6 +36,8 @@ const Header = () => {
   };
 
   const handleLanguage = (value: string) => {
+    const setBtn = () =>
+      btnLogText === t("logOut") ? t("logOut") : t("logIn");
     switch (value) {
       case "RU":
         i18n.changeLanguage("ru");
@@ -46,6 +48,7 @@ const Header = () => {
       default:
         break;
     }
+    setBtnLogText(setBtn);
   };
 
   const onClickEnterExit = (currText: string) => {
