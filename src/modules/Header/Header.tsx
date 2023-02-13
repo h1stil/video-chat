@@ -5,11 +5,13 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { devEnter } from "../../values/devValues";
+import { useCookies } from "react-cookie";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
   const [btnLogText, setBtnLogText] = useState(t("logIn"));
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["i18next"]);
 
   useEffect(() => {
     if (window.localStorage.getItem("AUTH")) {
@@ -37,6 +39,7 @@ const Header = () => {
 
   const handleLanguage = (value: string) => {
     i18n.changeLanguage(value);
+    setCookie("i18next", value, { path: "/", maxAge: 3600 });
   };
 
   const onClickEnterExit = () => {
@@ -69,7 +72,7 @@ const Header = () => {
       </div>
       <div className="header__right">
         <Select
-          defaultValue="RU"
+          defaultValue={cookies["i18next"] ? cookies["i18next"] : "RU"}
           style={{ width: 61 }}
           onChange={handleLanguage}
           options={[
