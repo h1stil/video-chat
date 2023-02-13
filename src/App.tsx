@@ -10,6 +10,7 @@ import MainPage from "./modules/MainPage/MainPage";
 import Video from "./pages/video";
 import { useEffect } from "react";
 import socketIOClient from "socket.io-client";
+import RoomPage from "./pages/RoomPage";
 
 const WS = "http://localhost:3001";
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/im" element={<MainPage />} />
           <Route path="/video" element={<Video />} />
+          <Route path="/room/:id" element={<RoomPage />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
