@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import MessagesList from "../../utils/MessagesList";
 import { IUser } from "../ContactList/ContactList";
 import "./Dialog.scss";
+import { useTranslation } from "react-i18next";
 
 const Dialog = () => {
+  const { t } = useTranslation();
   const initialState: IUser = {
     id: NaN,
     avatar: "",
@@ -27,9 +29,9 @@ const Dialog = () => {
         {activeUser!.name ? (
           <div className="user__status">
             {activeUser!.isOnline ? (
-              <p className="user__status_online">в сети</p>
+              <p className="user__status_online">{t("txtOnline")}</p>
             ) : (
-              <p className="user__status_offline">не в сети</p>
+              <p className="user__status_offline">{t("txtOffline")}</p>
             )}
           </div>
         ) : null}

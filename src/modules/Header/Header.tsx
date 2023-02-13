@@ -17,7 +17,7 @@ const Header = () => {
     } else {
       setBtnLogText(t("logIn"));
     }
-  }, [window.location.pathname]);
+  }, [window.location.pathname, t]);
 
   const onChange = (checked: boolean) => {
     const trans = () => {
@@ -36,23 +36,11 @@ const Header = () => {
   };
 
   const handleLanguage = (value: string) => {
-    const setBtn = () =>
-      btnLogText === t("logOut") ? t("logOut") : t("logIn");
-    switch (value) {
-      case "RU":
-        i18n.changeLanguage("ru");
-        break;
-      case "EN":
-        i18n.changeLanguage("en");
-        break;
-      default:
-        break;
-    }
-    setBtnLogText(setBtn);
+    i18n.changeLanguage(value);
   };
 
-  const onClickEnterExit = (currText: string) => {
-    if (currText == t("logIn")) {
+  const onClickEnterExit = () => {
+    if (btnLogText === t("logIn")) {
       navigate("/login");
     } else {
       setBtnLogText(t("logIn"));
@@ -101,10 +89,7 @@ const Header = () => {
         >
           <Switch onChange={onChange} />
         </ConfigProvider>
-        <Button
-          className="header__login"
-          onClick={() => onClickEnterExit(btnLogText)}
-        >
+        <Button className="header__login" onClick={() => onClickEnterExit()}>
           {btnLogText}
         </Button>
       </div>

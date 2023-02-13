@@ -1,6 +1,7 @@
 import { Empty } from "antd";
 import { FC } from "react";
 import Message from "../components/Message/Message";
+import { useTranslation } from "react-i18next";
 
 interface IMessages {
   avatar: string;
@@ -15,6 +16,8 @@ interface IMessagesProps {
 }
 
 const MessagesList: FC<IMessagesProps> = ({ items }) => {
+  const { t } = useTranslation();
+
   return items.length ? (
     <div className="dialog__chat">
       {items.map((message) => (
@@ -28,7 +31,7 @@ const MessagesList: FC<IMessagesProps> = ({ items }) => {
       ))}
     </div>
   ) : (
-    <Empty className="epty__messages" description="Нет сообщений" />
+    <Empty className="epty__messages" description={t("txtNoMessages")} />
   );
 };
 
