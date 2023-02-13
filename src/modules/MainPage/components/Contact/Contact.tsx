@@ -3,10 +3,17 @@ import createRandomColor from "../../utils/createRandomAvatart";
 import { IContact } from "../ContactList/ContactList";
 import "./Contact.scss";
 
-const Contact: FC<IContact> = ({ user, lastMessage, isMe }) => {
+const Contact: FC<IContact> = ({ user }) => {
   createRandomColor(user.name);
   return (
-    <div className="contact__item">
+    <div
+      className="contact__item"
+      onClick={() => {
+        localStorage.removeItem("active-contact");
+        localStorage.setItem("active-contact", JSON.stringify(user));
+        console.log(user);
+      }}
+    >
       {!user.avatar ? (
         <div
           className="contact__avatar"
@@ -31,19 +38,7 @@ const Contact: FC<IContact> = ({ user, lastMessage, isMe }) => {
       )}
       <div className="contact__text">
         <p className="contact__name">{user.name}</p>
-        {lastMessage ? (
-          <p className="contact__last-message">{lastMessage.text}</p>
-        ) : null}
       </div>
-      {!isMe ? (
-        lastMessage ? (
-          lastMessage.isReading ? (
-            <span className="message__checked">&#10003;&#10003;</span>
-          ) : (
-            <span className="message__checked">&#10003;</span>
-          )
-        ) : null
-      ) : null}
     </div>
   );
 };
