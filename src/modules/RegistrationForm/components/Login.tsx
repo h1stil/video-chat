@@ -13,19 +13,9 @@ const Login: FC = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values: ILogForm) => {
-    const errText = document.getElementById("errorLogin");
     const respCode = await submitForm("login", values);
-    if (respCode === 201) {
-      if (isBan() === true) {
-        window.localStorage.setItem("AUTH", "true");
-        setTimeout(() => navigate("/im"), 100);
-      }
-    }
-    if (respCode === 401) {
-      window.localStorage.removeItem("AUTH");
-      if (errText) errText.style.display = "block";
-    } else {
-      if (errText) errText.style.display = "none";
+    if (respCode === 201 && !isBan()) {
+      setTimeout(() => navigate("/im"), 100);
     }
   };
 

@@ -1,5 +1,7 @@
+import axios from "axios";
 import { devEnter } from "../../values/devValues";
 import { IRegForm, ILogForm } from "../../values/globalValues";
+import isBan from "./isBan";
 
 export default async function submitForm(
   type: string,
@@ -7,26 +9,29 @@ export default async function submitForm(
 ) {
   const path = type === "register" ? "/auth/registrate" : "/auth/login";
 
-  try {
-    const response = await fetch(
+  const respCode = axios
+    .post(
       `${process.env.REACT_APP_HTTP}://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}${path}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
+      values
+    )
+    .then((response) => {
+      if ((response.statusText === "Created" || devEnter) && !isBan()) {
+        window.localStorage.setItem("AUTH", response.data);
+      } else {
+        window.localStorage.removeItem("AUTH");
       }
-    );
-    if (response.ok || devEnter) {
-      // const { jwt_token } = response.json();
-      // console.log(jwt_token);
-      // console.log(response);
-    } else {
-      throw response.status;
-    }
-    return devEnter ? 201 : response.status;
-  } catch (err) {
-    return err;
-  }
+      return devEnter ? 201 : response.status;
+    })
+    .catch((err) => {
+      const errText = document.getElementById("errorLogin");
+      if (err.response.status === 401) {
+        if (errText) errText.style.display = "block";
+      } else {
+        if (errText) errText.style.display = "none";
+      }
+      window.localStorage.removeItem("AUTH");
+      return err.response.status;
+    });
+
+  return respCode;
 }
