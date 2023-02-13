@@ -15,7 +15,11 @@ export default async function submitForm(
       values
     )
     .then((response) => {
-      if ((response.statusText === "Created" || devEnter) && !isBan()) {
+      if (
+        (response.statusText === "Created" || devEnter) &&
+        !isBan() &&
+        type != "register"
+      ) {
         window.localStorage.setItem("AUTH", response.data);
       } else {
         window.localStorage.removeItem("AUTH");
