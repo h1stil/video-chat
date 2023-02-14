@@ -3,8 +3,15 @@ import { createContext, useEffect, useState, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import { v4 as uuidV4 } from "uuid";
-import { peersReducer } from "./peerReducer";
-import { addPeerAction, removePeerAction } from "./peerActions";
+import { peersReducer } from "./reducers/peerReducer";
+import { addPeerAction, removePeerAction } from "./reducers/peerActions";
+import { Message } from "../modules/chat/Chat";
+import { chatReducer } from "./reducers/chatReducer";
+import {
+  addHistoryAction,
+  addMessageAction,
+  toggleChatAction,
+} from "./reducers/chatActions";
 
 const WS = "http://localhost:3001";
 
@@ -21,12 +28,16 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
 }: Props) => {
   const navigate = useNavigate();
 
+  const [peers, dispatch] = useReducer(peersReducer, {});
+  const [chat, chatDispatch] = useReducer(chatReducer, {
+    messages: [],
+    isChatOpen: false,
+  });
+
   const [me, setMe] = useState<Peer>();
   const [stream, setStream] = useState<MediaStream>();
   const [screenSharedId, setScreenSharedId] = useState<string>("");
   const [roomId, setRoomId] = useState<string>("");
-
-  const [peers, dispatch] = useReducer(peersReducer, {});
 
   const enterRoom = ({ roomId }: { roomId: "string" }) => {
     navigate(`/room/${roomId}`);
@@ -67,6 +78,30 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
     }
   };
 
+  const sendMessage = (message: string) => {
+    const messageData: Message = {
+      content: message,
+      timestamp: new Date().getTime(),
+      author: me?.id,
+    };
+    chatDispatch(addMessageAction(messageData));
+
+    ws.emit("send-message", roomId, messageData);
+  };
+
+  const addMessage = (message: Message) => {
+    console.log(message);
+    chatDispatch(addMessageAction(message));
+  };
+
+  const addHistory = (messages: Message[]) => {
+    chatDispatch(addHistoryAction(messages));
+  };
+
+  const toggleChat = () => {
+    chatDispatch(toggleChatAction(!chat.isChatOpen));
+  };
+
   useEffect(() => {
     const meId = uuidV4();
     const peer = new Peer(meId);
@@ -87,6 +122,8 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
     ws.on("user-disconnected", removePeer);
     ws.on("user-started-sharing", (peerId) => setScreenSharedId(peerId));
     ws.on("user-stopped-sharing", () => setScreenSharedId(""));
+    ws.on("add-message", addMessage);
+    ws.on("get-messages", addHistory);
 
     return () => {
       ws.off("room-created");
@@ -95,6 +132,7 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
       ws.off("user-started-sharing");
       ws.off("user-stopped-sharing");
       ws.off("user-joined");
+      ws.off("add-message");
     };
   }, []);
 
@@ -133,9 +171,13 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
         me,
         stream,
         peers,
+        chat,
+        addMessage,
+        toggleChat,
         shareScreen,
         screenSharedId,
         setRoomId,
+        sendMessage,
       }}
     >
       {children}
