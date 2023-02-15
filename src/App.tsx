@@ -11,10 +11,11 @@ import Video from "./pages/video";
 import { useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import RoomPage from "./pages/RoomPage";
-import { WS } from "./globalValues";
+// import { WS } from "./globalValues";
 
 function App() {
   useEffect(() => {
+    const WS = process.env.REACT_APP_WS as string;
     socketIOClient(WS);
   }, []);
   return (
