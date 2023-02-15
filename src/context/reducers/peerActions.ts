@@ -1,4 +1,4 @@
-import { IPeer } from "../../globalValues";
+import { IPeer } from "../../values/globalValues";
 
 export const ADD_PEER_STREAM = "ADD_PEER_STREAM" as const;
 export const REMOVE_PEER_STREAM = "REMOVE_PEER_STREAM" as const;

@@ -1,4 +1,4 @@
-import { IPeer } from "../../globalValues";
+import { IPeer } from "../../values/globalValues";
 import {
   ADD_PEER_STREAM,
   REMOVE_PEER_STREAM,

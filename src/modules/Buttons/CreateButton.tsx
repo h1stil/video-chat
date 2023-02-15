@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { RoomContext } from "../../context/RoomContext";
-import { ws } from "../../globalValues";
+import { ws } from "../../values/globalValues";
 
 export const CreateButton: React.FC = () => {
   const createRoom = () => {

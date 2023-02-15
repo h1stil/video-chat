@@ -18,7 +18,7 @@ import {
   addMessageAction,
   toggleChatAction,
 } from "./reducers/chatActions";
-import { IPeer, ws } from "../globalValues";
+import { IPeer, ws } from "../values/globalValues";
 
 interface RoomValue {
   stream?: MediaStream;

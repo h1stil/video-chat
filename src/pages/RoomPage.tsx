@@ -7,7 +7,7 @@ import { PeerState } from "../context/reducers/peerReducer";
 import { ShareScreenButton } from "../modules/Buttons/ShareScreenButton";
 import { ChatButton } from "../modules/Buttons/ChatButton";
 import { Chat } from "../modules/chat/Chat";
-import { ws } from "../globalValues";
+import { ws } from "../values/globalValues";
 
 const RoomPage = () => {
   const { id } = useParams();
