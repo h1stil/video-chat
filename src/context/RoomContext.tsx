@@ -106,7 +106,9 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
   };
 
   useEffect(() => {
-    const meId = uuidV4();
+    const userId = localStorage.getItem("id");
+    const meId = userId || uuidV4();
+    localStorage.setItem("id", meId);
     const peer = new Peer(meId);
     setMe(peer);
 
