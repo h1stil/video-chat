@@ -31,8 +31,9 @@ const RoomPage = () => {
   }, [id, setRoomId]);
 
   useEffect(() => {
-    if (me) ws.emit("join-room", { roomId: id, peerId: me._id, userName });
-  }, [id, me, ws]);
+    if (me && stream)
+      ws.emit("join-room", { roomId: id, peerId: me._id, userName });
+  }, [id, me, ws, stream]);
 
   const screenSharingVideo =
     screenSharedId === me?.id ? stream : peers[screenSharedId]?.stream;
@@ -47,6 +48,7 @@ const RoomPage = () => {
             {screenSharingVideo && (
               <li className="video__shared" key={stream.id}>
                 <VideoPleer stream={screenSharingVideo} />
+                <p>{me?.id}</p>
               </li>
             )}
 
@@ -55,11 +57,13 @@ const RoomPage = () => {
             {screenSharedId !== me?.id && (
               <li className="video__item" key={-1}>
                 <VideoPleer stream={stream} />
+                <p>{me?.id}</p>
               </li>
             )}
             {Object.values(peersToShow as PeerState).map((peer) => (
               <li className="video__item" key={-2}>
-                <VideoPleer stream={peer.stream} />
+                {peer.stream && <VideoPleer stream={peer.stream} />}
+                <p>{peer.userName}</p>
               </li>
             ))}
           </ul>

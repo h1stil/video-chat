@@ -4,7 +4,12 @@ import { useNavigate } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import { v4 as uuidV4 } from "uuid";
 import { peersReducer } from "./reducers/peerReducer";
-import { addPeerAction, removePeerAction } from "./reducers/peerActions";
+import {
+  addPeerStreamAction,
+  removePeerStreamAction,
+  addPeerNameAction,
+  addAllPeersAction,
+} from "./reducers/peerActions";
 import { Message } from "../modules/chat/Chat";
 import { chatReducer } from "./reducers/chatReducer";
 import {
@@ -44,15 +49,19 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
 
   const enterRoom = ({ roomId }: { roomId: "string" }) => {
     navigate(`/room/${roomId}`);
-    console.log(roomId);
   };
 
-  const getUsers = ({ members }: { members: string[] }) => {
+  const getUsers = ({
+    members,
+  }: {
+    members: Record<string, { userName: string }>;
+  }) => {
+    dispatch(addAllPeersAction(members));
     console.log(members);
   };
 
   const removePeer = (peerId: string) => {
-    dispatch(removePeerAction(peerId));
+    dispatch(removePeerStreamAction(peerId));
   };
 
   const switchStream = (stream: MediaStream) => {
@@ -138,6 +147,8 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
       ws.off("user-stopped-sharing");
       ws.off("user-joined");
       ws.off("add-message");
+      ws.off("get-messages");
+      me?.disconnect();
     };
   }, []);
 
@@ -152,20 +163,30 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
   useEffect(() => {
     if (!me || !stream) return;
 
-    ws.on("user-joined", ({ peerId }) => {
-      const call = me.call(peerId, stream);
+    ws.on("user-joined", ({ peerId, userName: name }) => {
+      console.log(name, "name");
+      console.log(userName, "userName");
+      dispatch(addPeerNameAction(peerId, name));
+
+      const call = me.call(peerId, stream, {
+        metadata: {
+          userName,
+        },
+      });
       call.on("stream", (peerStream) => {
-        dispatch(addPeerAction(peerId, peerStream));
+        dispatch(addPeerStreamAction(peerId, peerStream));
       });
     });
 
     me.on("call", (call) => {
+      const { userName } = call.metadata;
+      dispatch(addPeerNameAction(call.peer, userName));
       call.answer(stream);
       call.on("stream", (peerStream) => {
-        dispatch(addPeerAction(call.peer, peerStream));
+        dispatch(addPeerStreamAction(call.peer, peerStream));
       });
     });
-  }, [me, stream]);
+  }, [me, stream, userName]);
 
   console.log({ peers });
 

@@ -42,8 +42,7 @@ export const ChatBubble: React.FC<{ message: Message }> = ({ message }) => {
             // "text-left": !isSelf,
           })}
         >
-          "You"
-          {/* {isSelf ? "You" : userName} */}
+          {isSelf ? "You" : userName}
         </div>
       </div>
     </div>

@@ -12,3 +12,8 @@ export interface ILogForm {
   username: string;
   password: string;
 }
+
+export interface IPeer {
+  userName: string;
+  peerId: string;
+}
