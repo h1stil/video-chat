@@ -1,0 +1,27 @@
+.video__container {
+  padding: 0 40px;
+  width: 100%;
+}
+
+.page__title {
+  text-align: center;
+}
+
+.video__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.video__shared {
+  width: 80%;
+  height: 60%;
+}
+
+.btn-video {
+  margin-right: 20px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
