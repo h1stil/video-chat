@@ -8,7 +8,7 @@ import {
 
 export type PeerState = Record<
   string,
-  { stream?: MediaStream; userName?: string }
+  { stream?: MediaStream; userName?: string; peerId?: string }
 >;
 export type PeerAction =
   | {
@@ -26,7 +26,7 @@ export type PeerAction =
   | {
       type: typeof ADD_ALL_PEERS;
       payload: {
-        peers: Record<string, { userName: string }>;
+        peers: Record<string, IPeer>;
       };
     };
 

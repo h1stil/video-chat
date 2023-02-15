@@ -1,19 +1,16 @@
 import { useContext, useState } from "react";
-// import { ChatContext } from "../../context/ChatContext";
 import { RoomContext } from "../../context/RoomContext";
-// import { UserContext } from "../../context/UserContext";
 
 export const ChatInput: React.FC = () => {
   const [message, setMessage] = useState("");
-  const { sendMessage } = useContext(RoomContext);
-  //   const { userId } = useContext(UserContext);
-  const { roomId } = useContext(RoomContext);
+  const { roomId, sendMessage, userId } = useContext(RoomContext);
+
   return (
     <div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          sendMessage(message);
+          sendMessage(message, roomId, userId);
           setMessage("");
         }}
       >

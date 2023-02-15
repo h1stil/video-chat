@@ -20,9 +20,7 @@ export const addPeerNameAction = (peerId: string, userName: string) => ({
   payload: { peerId, userName },
 });
 
-export const addAllPeersAction = (
-  peers: Record<string, { userName: string }>
-) => ({
+export const addAllPeersAction = (peers: Record<string, IPeer>) => ({
   type: ADD_ALL_PEERS,
   payload: { peers },
 });

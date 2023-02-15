@@ -11,8 +11,7 @@ import Video from "./pages/video";
 import { useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import RoomPage from "./pages/RoomPage";
-
-const WS = "http://localhost:3001";
+import { WS } from "./globalValues";
 
 function App() {
   useEffect(() => {

@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Peer from "peerjs";
 import { createContext, useEffect, useState, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import socketIOClient from "socket.io-client";
+
 import { v4 as uuidV4 } from "uuid";
-import { peersReducer } from "./reducers/peerReducer";
+import { PeerState, peersReducer } from "./reducers/peerReducer";
 import {
   addPeerStreamAction,
   removePeerStreamAction,
@@ -11,18 +12,46 @@ import {
   addAllPeersAction,
 } from "./reducers/peerActions";
 import { Message } from "../modules/chat/Chat";
-import { chatReducer } from "./reducers/chatReducer";
+import { ChatState, chatReducer } from "./reducers/chatReducer";
 import {
   addHistoryAction,
   addMessageAction,
   toggleChatAction,
 } from "./reducers/chatActions";
+import { IPeer, ws } from "../globalValues";
 
-const WS = "http://localhost:3001";
+interface RoomValue {
+  stream?: MediaStream;
+  screenStream?: MediaStream;
+  peers: PeerState;
+  shareScreen: () => void;
+  roomId: string;
+  setRoomId: (id: string) => void;
+  chat: ChatState;
+  sendMessage: (message: string, roomId: string, author: string) => void;
+  toggleChat: () => void;
+  userId: string;
+  userName: string;
+  setUserName: (userName: string) => void;
+  screenSharedId: string;
+}
 
-export const RoomContext = createContext<null | any>(null);
-
-const ws = socketIOClient(WS);
+export const RoomContext = createContext<RoomValue>({
+  peers: {},
+  shareScreen: () => {},
+  setRoomId: (id) => {},
+  screenSharedId: "",
+  roomId: "",
+  chat: {
+    messages: [],
+    isChatOpen: false,
+  },
+  sendMessage: (message: string, roomId: string, author: string) => {},
+  toggleChat: () => {},
+  userId: "",
+  userName: "",
+  setUserName: (userName) => {},
+});
 
 interface Props {
   children: React.ReactNode;
@@ -46,16 +75,13 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
   const [userName, setUserName] = useState<string>(
     localStorage.getItem("name") || "ИМЯ"
   );
+  const [userId] = useState(localStorage.getItem("userId") || uuidV4());
 
   const enterRoom = ({ roomId }: { roomId: "string" }) => {
     navigate(`/room/${roomId}`);
   };
 
-  const getUsers = ({
-    members,
-  }: {
-    members: Record<string, { userName: string }>;
-  }) => {
+  const getUsers = ({ members }: { members: Record<string, IPeer> }) => {
     dispatch(addAllPeersAction(members));
     console.log(members);
   };
@@ -73,7 +99,7 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
       connection[0].peerConnection
         .getSenders()[1]
         .replaceTrack(track)
-        .catch((err: any) => console.error(err));
+        .catch((err: unknown) => console.error(err));
     });
   };
 
@@ -90,11 +116,11 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
     }
   };
 
-  const sendMessage = (message: string) => {
+  const sendMessage = (message: string, roomId: string, author: string) => {
     const messageData: Message = {
       content: message,
       timestamp: new Date().getTime(),
-      author: me?.id,
+      author,
     };
     chatDispatch(addMessageAction(messageData));
 
@@ -115,10 +141,10 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
   };
 
   useEffect(() => {
-    const userId = localStorage.getItem("id");
-    const meId = userId || uuidV4();
-    localStorage.setItem("id", meId);
-    const peer = new Peer(meId);
+    // const userId = localStorage.getItem("id");
+    // const meId = userId || uuidV4();
+    // localStorage.setItem("id", userId);
+    const peer = new Peer(userId);
     setMe(peer);
 
     try {
@@ -193,19 +219,18 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
   return (
     <RoomContext.Provider
       value={{
-        ws,
-        me,
         stream,
         peers,
         chat,
-        addMessage,
         toggleChat,
         shareScreen,
         screenSharedId,
+        roomId,
         setRoomId,
         sendMessage,
         userName,
         setUserName,
+        userId,
       }}
     >
       {children}

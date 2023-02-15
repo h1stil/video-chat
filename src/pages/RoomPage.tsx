@@ -7,36 +7,33 @@ import { PeerState } from "../context/reducers/peerReducer";
 import { ShareScreenButton } from "../modules/Buttons/ShareScreenButton";
 import { ChatButton } from "../modules/Buttons/ChatButton";
 import { Chat } from "../modules/chat/Chat";
+import { ws } from "../globalValues";
 
 const RoomPage = () => {
   const { id } = useParams();
   const {
-    ws,
-    me,
     stream,
     peers,
     chat,
-    addMessage,
     toggleChat,
     shareScreen,
     screenSharedId,
     setRoomId,
-    sendMessage,
     userName,
-    setUserName,
+    userId,
   } = useContext(RoomContext);
 
   useEffect(() => {
-    setRoomId(id);
+    if (id) setRoomId(id);
   }, [id, setRoomId]);
 
   useEffect(() => {
-    if (me && stream)
-      ws.emit("join-room", { roomId: id, peerId: me._id, userName });
-  }, [id, me, ws, stream]);
+    if (userId && stream)
+      ws.emit("join-room", { roomId: id, peerId: userId, userName });
+  }, [id, userId, ws, stream]);
 
   const screenSharingVideo =
-    screenSharedId === me?.id ? stream : peers[screenSharedId]?.stream;
+    screenSharedId === userId ? stream : peers[screenSharedId]?.stream;
 
   const { [screenSharedId]: sharing, ...peersToShow } = peers;
   return (
@@ -46,26 +43,28 @@ const RoomPage = () => {
           <h1 className="page__title">{`Chat Room id: "${id}"`}</h1>
           <ul className="video__list">
             {screenSharingVideo && (
-              <li className="video__shared" key={stream.id}>
+              <li className="video__shared" key={stream?.id + "ufc"}>
                 <VideoPleer stream={screenSharingVideo} />
-                <p>{me?.id}</p>
+                <p>{userId}</p>
               </li>
             )}
 
             {/* style={screenSharingVideo ? { height: "20%" } : { height: "80%" }} */}
 
-            {screenSharedId !== me?.id && (
+            {screenSharedId !== userId && (
               <li className="video__item" key={-1}>
-                <VideoPleer stream={stream} />
-                <p>{me?.id}</p>
+                {stream && <VideoPleer stream={stream} />}
+                <p>{userId}</p>
               </li>
             )}
-            {Object.values(peersToShow as PeerState).map((peer) => (
-              <li className="video__item" key={-2}>
-                {peer.stream && <VideoPleer stream={peer.stream} />}
-                <p>{peer.userName}</p>
-              </li>
-            ))}
+            {Object.values(peersToShow as PeerState)
+              .filter((peer) => !!peer.stream)
+              .map((peer) => (
+                <li className="video__item" key={peer.peerId}>
+                  {peer.stream && <VideoPleer stream={peer.stream} />}
+                  <p>{peer.userName}</p>
+                </li>
+              ))}
           </ul>
           {chat.isChatOpen && (
             <div>
