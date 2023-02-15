@@ -1,58 +1,65 @@
 import Dialog from "./components/Dialog/Dialog";
 import "./MainPage.scss";
 import { Input } from "antd";
-import ContactList from "./components/ContactList/ContactList";
 import {
   AudioOutlined,
-  LoadingOutlined,
+  AudioMutedOutlined,
   SendOutlined,
-  TeamOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { recordMessage } from "./utils/recordMessage";
-import testUsers from "./utils/testUsers.json";
-
-const Contacts = JSON.parse(JSON.stringify(testUsers));
+import { useState, useEffect } from "react";
+import ContainerDialog from "./utils/ContainerDialogs";
+import { useNavigate } from "react-router-dom";
+import { devEnter } from "../../values/devValues";
+import { IUser } from "./components/ContactList/ContactList";
+import { useTranslation } from "react-i18next";
 
 const MainPage = () => {
-  const { Search } = Input;
-  const onSearch = (value: string) => console.log(value);
-  const getMessageValue = () =>
-    (document.querySelector(".send-message__value") as HTMLInputElement).value;
+  const { t } = useTranslation();
+  let Contacts: IUser[];
+  localStorage.getItem("friends")
+    ? (Contacts = JSON.parse(localStorage.getItem("friends")!))
+    : (Contacts = []);
+
+  const [sendMessage, setSendMessage] = useState("");
+  const onSearch = (value: string) => value;
+  const [inputValue] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!(window.localStorage.getItem("AUTH") || devEnter)) {
+      navigate("/login");
+    }
+  }, [window.localStorage]);
+
   return (
     <div className="main">
-      <div className="main__contacts">
-        <div className="contacts__search">
-          <div className="search__list">
-            <TeamOutlined />
-            <span> Список диалогов</span>
-          </div>
-          <Search
-            className="contacts__search-input"
-            placeholder="Поиск среди контактов"
-            allowClear
-            onSearch={onSearch}
-            style={{ width: 250, padding: "5px 10px" }}
-          />
-        </div>
-        <div className="contacts__list">
-          <ContactList props={Contacts} userId={1} />
-        </div>
-      </div>
+      <ContainerDialog
+        props={Contacts}
+        onSearch={onSearch}
+        inputValue={inputValue}
+      />
       <div className="main__dialog">
         <Dialog />
         <div className="dialog__send-message">
           <Input
             className="send-message__value"
-            placeholder="Введите текст сообщения"
+            placeholder={t("txtEnterMessage") || "Введите текст сообщения"}
+            onChange={(e) => {
+              setSendMessage(e.target.value);
+            }}
           />
           <div className="send-message__panel">
-            <VideoCameraOutlined />
-            <div className="panel__record" onClick={() => recordMessage()}>
-              <AudioOutlined className="panel__record_start" />
-              <LoadingOutlined className="panel__record_stop active" />
-            </div>
-            <SendOutlined onClick={() => console.log(getMessageValue())} />
+            <VideoCameraOutlined className="panel__video" />
+            {sendMessage ? (
+              <SendOutlined onClick={() => console.log(sendMessage)} />
+            ) : (
+              <div className="panel__record" onClick={() => recordMessage()}>
+                <AudioOutlined className="panel__record_start" />
+                <AudioMutedOutlined className="panel__record_stop active" />
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,323 +1,42 @@
-import { scrollMessages } from "../../utils/scrollMessages";
-import Message from "../Message/Message";
+import { useEffect, useState } from "react";
+import MessagesList from "../../utils/MessagesList";
+import { IUser } from "../ContactList/ContactList";
 import "./Dialog.scss";
+import { useTranslation } from "react-i18next";
 
 const Dialog = () => {
-  const status: "offline" | "online" = "online";
-  window.onload = scrollMessages;
+  const { t } = useTranslation();
+  const initialState: IUser = {
+    id: NaN,
+    avatar: "",
+    isOnline: false,
+    name: "",
+  };
+  const [activeUser, setActiveUser] = useState<IUser>(initialState);
+
+  localStorage.getItem("active-contact")
+    ? activeUser
+    : localStorage.setItem("active-contact", JSON.stringify(initialState));
+
+  useEffect(() => {
+    setActiveUser(JSON.parse(localStorage.getItem("active-contact")!));
+  }, []);
 
   return (
     <div className="message__container">
       <div className="dialog__user">
-        <p className="user__name">Username</p>
-        <div className="user__status">
-          {status === "online" ? (
-            <p className="user__status_online">в сети</p>
-          ) : (
-            <p className="user__status_offline">не в сети</p>
-          )}
-        </div>
+        <p className="user__name">{activeUser ? activeUser.name : null}</p>
+        {activeUser!.name ? (
+          <div className="user__status">
+            {activeUser!.isOnline ? (
+              <p className="user__status_online">{t("txtOnline")}</p>
+            ) : (
+              <p className="user__status_offline">{t("txtOffline")}</p>
+            )}
+          </div>
+        ) : null}
       </div>
-      <div className="dialog__chat">
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hello my friend hello my friend",
-            answer: false,
-            isReading: true,
-          }}
-        />{" "}
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-        <Message
-          {...{
-            avatar:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc7flqApawFOs_eWbeTZRPA-Uo92IObC1pQ&usqp=CAU",
-            date: Date.now(),
-            message: "hi, It's me",
-            answer: true,
-          }}
-        />
-      </div>
+      <MessagesList items={[]} />
     </div>
   );
 };

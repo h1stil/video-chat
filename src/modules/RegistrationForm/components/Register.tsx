@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Button, Form, Input } from "antd";
 import {
   LockOutlined,
@@ -8,21 +8,27 @@ import {
 } from "@ant-design/icons";
 
 import "./Register.scss";
-import { IRegForm } from "../../../globalValues";
+import { IRegForm } from "../../../values/globalValues";
 import submitForm from "../../drivers/submitForm";
 import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register: FC = () => {
   const { t } = useTranslation();
+  const [registrSuccess, setRegistrSuccess] = useState(false);
 
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  const onFinish = (values: IRegForm) => {
-    console.log("Received values of form: ", values);
-    submitForm("register", values);
+  const onFinish = async (values: IRegForm) => {
+    // console.log("Received values of form: ", values);
+    const respCode = await submitForm("register", values);
+    if (respCode === 201) {
+      setRegistrSuccess(true);
+      setTimeout(() => navigate("/login"), 4000);
+    }
   };
 
-  const registrSuccess = false;
   return (
     <div className="register__wrapper">
       <h2 className="register__title">{t("txtRegistration")}</h2>
@@ -51,15 +57,18 @@ const Register: FC = () => {
             rules={[
               {
                 type: "email",
-                message: t("txtIncorretEmail"),
+                message: t("txtIncorretEmail") || "2",
               },
               {
                 required: true,
-                message: t("txtEnterEmail"),
+                message: t("txtEnterEmail") || "2",
               },
             ]}
           >
-            <Input placeholder={t("txtEmail")} prefix={<MailOutlined />} />
+            <Input
+              placeholder={t("txtEmail") || "2"}
+              prefix={<MailOutlined />}
+            />
           </Form.Item>
 
           <Form.Item
@@ -68,13 +77,14 @@ const Register: FC = () => {
             rules={[
               {
                 required: true,
-                message: t("txtEnterPassword"),
+                message: t("txtEnterPassword") || "2",
               },
+              { min: 3, message: t("txtPassMin3Sym") || "2" },
             ]}
             hasFeedback
           >
             <Input.Password
-              placeholder={t("txtPassword")}
+              placeholder={t("txtPassword") || "2"}
               prefix={<LockOutlined />}
             />
           </Form.Item>
@@ -87,41 +97,51 @@ const Register: FC = () => {
             rules={[
               {
                 required: true,
-                message: t("txtConfirmPassword"),
+                message: t("txtConfirmPassword") || "2",
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error(t("txtPasswordMismatch")));
+                  return Promise.reject(
+                    new Error(t("txtPasswordMismatch") || "2") || "2"
+                  );
                 },
               }),
             ]}
           >
             <Input.Password
-              placeholder={t("txtRepeatPassword")}
+              placeholder={t("txtRepeatPassword") || "2"}
               prefix={<LockOutlined />}
             />
           </Form.Item>
 
           <Form.Item
-            name="nickname"
+            name="name"
             label=""
             tooltip={t("txtThisNameVisible")}
             rules={[
               {
                 required: true,
-                message: t("txtEnterUsername"),
+                message: t("txtEnterUsername") || "2",
                 whitespace: true,
               },
             ]}
           >
-            <Input placeholder={t("txtUsername")} prefix={<UserOutlined />} />
+            <Input
+              placeholder={t("txtUsername") || "2"}
+              prefix={<UserOutlined />}
+            />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Link to="/login">{t("logIn")}</Link>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="auth__form_reg-button"
+            >
               {t("txtRegister")}
             </Button>
           </Form.Item>

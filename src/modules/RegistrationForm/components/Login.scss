@@ -22,3 +22,11 @@
   color: $hintText;
   font-size: 0.8rem;
 }
+
+.err-text {
+  position: absolute;
+  display: none;
+  color: rgb(255, 77, 79);
+  top: 62px;
+  left: 77px;
+}

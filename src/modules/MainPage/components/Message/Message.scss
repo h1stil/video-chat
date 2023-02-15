@@ -57,3 +57,8 @@
   letter-spacing: -8px;
   color: $hoverColor;
 }
+
+.epty__messages {
+  height: calc(100vh - 340px);
+  transform: translateY(50%);
+}

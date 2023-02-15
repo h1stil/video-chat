@@ -1,29 +1,25 @@
 import { Button, Switch, ConfigProvider, Select } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.scss";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { devEnter } from "../../values/devValues";
+import { useCookies } from "react-cookie";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-
-  //заменить изменения состояния кнопки в зависимости от наличия токена
-  const location = useLocation();
   const [btnLogText, setBtnLogText] = useState(t("logIn"));
+  const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["i18next"]);
 
   useEffect(() => {
-    const page = window.location.pathname;
-    if (page === "/im") {
+    if (window.localStorage.getItem("AUTH")) {
       setBtnLogText(t("logOut"));
-      // console.log(t("logOut"));
     } else {
       setBtnLogText(t("logIn"));
-      // console.log(t("logIn"));
     }
-  }, [location]);
-  //
+  }, [window.location.pathname, t]);
 
   const onChange = (checked: boolean) => {
     const trans = () => {
@@ -42,19 +38,27 @@ const Header = () => {
   };
 
   const handleLanguage = (value: string) => {
-    switch (value) {
-      case "RU":
-        i18n.changeLanguage("ru");
-        break;
-      case "EN":
-        i18n.changeLanguage("en");
-        break;
-      default:
-        break;
+    i18n.changeLanguage(value);
+    setCookie("i18next", value, { path: "/", maxAge: 3600 });
+  };
+
+  const onClickEnterExit = () => {
+    if (btnLogText === t("logIn")) {
+      navigate("/login");
+    } else {
+      setBtnLogText(t("logIn"));
+      window.localStorage.removeItem("AUTH");
+      navigate("/");
     }
   };
 
-  // const logText = page;
+  const onClickChat = () => {
+    if (window.localStorage.getItem("AUTH") || devEnter) {
+      navigate("/im");
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div className="header">
@@ -62,15 +66,13 @@ const Header = () => {
         <Link to="/">
           <div className="header__logo"></div>
         </Link>
-        <Link to="/im">
-          <div className="header__chat">
-            <h1>{t("txtChat")}</h1>
-          </div>
-        </Link>
+        <div className="header__chat" onClick={() => onClickChat()}>
+          <h1>{t("txtChat")}</h1>
+        </div>
       </div>
       <div className="header__right">
         <Select
-          defaultValue="RU"
+          defaultValue={cookies["i18next"] ? cookies["i18next"] : "RU"}
           style={{ width: 61 }}
           onChange={handleLanguage}
           options={[
@@ -90,9 +92,9 @@ const Header = () => {
         >
           <Switch onChange={onChange} />
         </ConfigProvider>
-        <Link to="/login">
-          <Button className="header__login">{btnLogText}</Button>
-        </Link>
+        <Button className="header__login" onClick={() => onClickEnterExit()}>
+          {btnLogText}
+        </Button>
       </div>
     </div>
   );
