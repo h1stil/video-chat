@@ -11,7 +11,7 @@ export default async function submitForm(
 
   const respCode = axios
     .post(
-      `${process.env.REACT_APP_HTTP}://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}${path}`,
+      `${process.env.REACT_APP_HTTP}://${process.env.REACT_APP_HOST}${path}`,
       values
       // { timeout: 10000 }
     )
