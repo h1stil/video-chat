@@ -15,12 +15,13 @@ export const Chat: React.FC = () => {
   return (
     <div className="flex flex-col h-full justify-between" data-testid="chat">
       <div style={{ height: "300px", border: "2px solid black" }}>
-        {chat?.messages.map((message: Message) => (
-          <ChatBubble
-            message={message}
-            key={message.timestamp + (message?.author || "anonymous")}
-          />
-        ))}
+        {chat?.messages.length > 0 &&
+          chat?.messages.map((message: Message) => (
+            <ChatBubble
+              message={message}
+              key={message.timestamp + (message?.author || "anonymous")}
+            />
+          ))}
       </div>
       <ChatInput />
     </div>

@@ -22,6 +22,8 @@ const RoomPage = () => {
     screenSharedId,
     setRoomId,
     sendMessage,
+    userName,
+    setUserName,
   } = useContext(RoomContext);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const RoomPage = () => {
   }, [id, setRoomId]);
 
   useEffect(() => {
-    if (me) ws.emit("join-room", { roomId: id, peerId: me._id });
+    if (me) ws.emit("join-room", { roomId: id, peerId: me._id, userName });
   }, [id, me, ws]);
 
   const screenSharingVideo =

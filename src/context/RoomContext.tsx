@@ -38,6 +38,9 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
   const [stream, setStream] = useState<MediaStream>();
   const [screenSharedId, setScreenSharedId] = useState<string>("");
   const [roomId, setRoomId] = useState<string>("");
+  const [userName, setUserName] = useState<string>(
+    localStorage.getItem("name") || "ИМЯ"
+  );
 
   const enterRoom = ({ roomId }: { roomId: "string" }) => {
     navigate(`/room/${roomId}`);
@@ -178,6 +181,8 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
         screenSharedId,
         setRoomId,
         sendMessage,
+        userName,
+        setUserName,
       }}
     >
       {children}
