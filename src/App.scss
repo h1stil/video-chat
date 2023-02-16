@@ -67,7 +67,7 @@ select {
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow-x: scroll;
+  overflow: auto;
 }
 
 .content__container {

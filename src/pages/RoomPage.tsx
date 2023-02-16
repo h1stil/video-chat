@@ -10,6 +10,8 @@ import { ChatButton } from "../modules/Buttons/ChatButton";
 import { Chat } from "../modules/chat/Chat";
 import { ws } from "../values/globalValues";
 import { VideoCameraOutlined } from "@ant-design/icons";
+import { Empty } from "antd";
+import { useTranslation } from "react-i18next";
 
 const RoomPage = () => {
   const { id } = useParams();
@@ -48,11 +50,19 @@ const RoomPage = () => {
     screenSharedId === userId ? screenStream : peers[screenSharedId]?.stream;
 
   const { [screenSharedId]: sharing, ...peersToShow } = peers;
-  return (
+
+  const activeUser = () => {
+    const user = localStorage.getItem("active-contact");
+    return user ? JSON.parse(user).name : null;
+  };
+
+  const { t } = useTranslation();
+
+  return activeUser() ? (
     <div className="video__main">
       <section className="video__frames">
         <div className="video__container container">
-          <h2 className="page__title">{`Chat Room id: "${id}"`}</h2>
+          <h2 className="page__title">{`Chat Room with ${activeUser()}`}</h2>
           <div className="controls">
             <VideoCameraOutlined
               style={{ fontSize: "36px", display: "block" }}
@@ -95,6 +105,8 @@ const RoomPage = () => {
         </div>
       </section>
     </div>
+  ) : (
+    <Empty className="epty__messages" description={t("txtNoMessages")} />
   );
 };
 
