@@ -16,7 +16,7 @@ export const ChatBubble: React.FC<{ message: Message }> = ({ message }) => {
         // "pr-10 justify-start": !isSelf,
       })}
     >
-      <div className="flex flex-col">
+      <div className="dialog-message__message">
         <div
           className={classNames("inline-block py-2 px-4 rounded", {
             // "bg-red-200": isSelf,
@@ -25,7 +25,7 @@ export const ChatBubble: React.FC<{ message: Message }> = ({ message }) => {
         >
           {message.content}
           <div
-            className={classNames("text-xs opacity-50", {
+            className={classNames("message__time", {
               //   "text-right": isSelf,
               //   "text-left": !isSelf,
             })}
@@ -39,7 +39,7 @@ export const ChatBubble: React.FC<{ message: Message }> = ({ message }) => {
             // "text-left": !isSelf,
           })}
         >
-          {isSelf ? "You" : userName}
+          {isSelf ? "Вы" : userName}
         </div>
       </div>
     </div>

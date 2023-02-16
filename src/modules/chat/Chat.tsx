@@ -3,6 +3,8 @@ import { ChatBubble } from "./ChatBubble";
 import { ChatInput } from "./ChatInput";
 import { RoomContext } from "../../context/RoomContext";
 
+import "./Chat.scss";
+
 export interface Message {
   content: string;
   author?: string;
@@ -14,7 +16,7 @@ export const Chat: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full justify-between" data-testid="chat">
-      <div style={{ height: "300px", border: "2px solid black" }}>
+      <div className="dialog-message__container">
         {chat?.messages.length > 0 &&
           chat?.messages.map((message: Message) => (
             <ChatBubble

@@ -11,13 +11,14 @@ export default async function submitForm(
 
   const respCode = axios
     .post(
-      `${process.env.REACT_APP_HTTP}://${process.env.REACT_APP_HOST}${path}`,
+      // `https://pik-chat-backend.onrender.com${path}`,
+      `http://localhost:5000${path}`,
       values
       // { timeout: 10000 }
     )
     .then((response) => {
       if (
-        (response.statusText === "Created" || devEnter) &&
+        (response.status === 201 || devEnter) &&
         !isBan() &&
         type != "register"
       ) {
