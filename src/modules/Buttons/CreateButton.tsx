@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { RoomContext } from "../../context/RoomContext";
+import React from "react";
 import { ws } from "../../values/globalValues";
 
 export const CreateButton: React.FC = () => {

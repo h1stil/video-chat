@@ -20,7 +20,7 @@ export const ChatInput: React.FC = () => {
             onChange={(e) => setMessage(e.target.value)}
             value={message}
           />
-          <button type="submit" className="btn btn-video">
+          <button type="submit" className="btn btn-video" title="Send message">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               style={{

@@ -70,6 +70,7 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
 
   const [me, setMe] = useState<Peer>();
   const [stream, setStream] = useState<MediaStream>();
+  const [screenStream, setScreenStream] = useState<MediaStream>();
   const [screenSharedId, setScreenSharedId] = useState<string>("");
   const [roomId, setRoomId] = useState<string>("");
   const [userName, setUserName] = useState<string>(
@@ -91,14 +92,18 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
   };
 
   const switchStream = (stream: MediaStream) => {
-    setStream(stream);
     if (me) setScreenSharedId(me.id);
 
     Object.values(me?.connections).forEach((connection: any) => {
-      const track = stream?.getTracks().find((track) => track.kind === "video");
+      const videoTrack = stream
+        ?.getTracks()
+        .find((track) => track.kind === "video");
       connection[0].peerConnection
-        .getSenders()[1]
-        .replaceTrack(track)
+        .getSenders()
+        .find(
+          (sender: { track: { kind: string } }) => sender.track.kind === "video"
+        )
+        .replaceTrack(videoTrack)
         .catch((err: unknown) => console.error(err));
     });
   };
@@ -112,7 +117,10 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
           setScreenSharedId("");
         });
     } else {
-      navigator.mediaDevices.getDisplayMedia({}).then(switchStream);
+      navigator.mediaDevices.getDisplayMedia({}).then((stream) => {
+        switchStream(stream);
+        setScreenStream(stream);
+      });
     }
   };
 
@@ -141,9 +149,6 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
   };
 
   useEffect(() => {
-    // const userId = localStorage.getItem("id");
-    // const meId = userId || uuidV4();
-    // localStorage.setItem("id", userId);
     const peer = new Peer(userId);
     setMe(peer);
 
@@ -212,7 +217,7 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
         dispatch(addPeerStreamAction(call.peer, peerStream));
       });
     });
-  }, [me, stream, userName]);
+  }, [me, stream, userName, screenStream]);
 
   console.log({ peers });
 
@@ -231,6 +236,7 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
         userName,
         setUserName,
         userId,
+        screenStream,
       }}
     >
       {children}

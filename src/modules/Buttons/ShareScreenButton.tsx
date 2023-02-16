@@ -6,6 +6,7 @@ export const ShareScreenButton: React.FC<{ onClick: () => void }> = ({
       className="btn btn-video"
       onClick={onClick}
       aria-label={"Share your screen"}
+      title="Share your screen on/off"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

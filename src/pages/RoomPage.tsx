@@ -21,6 +21,7 @@ const RoomPage = () => {
     setRoomId,
     userName,
     userId,
+    screenStream,
   } = useContext(RoomContext);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const RoomPage = () => {
   }, [id, userId, ws, stream]);
 
   const screenSharingVideo =
-    screenSharedId === userId ? stream : peers[screenSharedId]?.stream;
+    screenSharedId === userId ? screenStream : peers[screenSharedId]?.stream;
 
   const { [screenSharedId]: sharing, ...peersToShow } = peers;
   return (
