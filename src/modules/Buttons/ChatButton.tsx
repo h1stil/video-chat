@@ -1,6 +1,11 @@
 export const ChatButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
-    <button className="btn" onClick={onClick} aria-label={"Share your screen"}>
+    <button
+      className="btn"
+      onClick={onClick}
+      aria-label={"Open/Close text-chat"}
+      title="Open/Close text-chat"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{ width: "60px", height: "60px" }}
