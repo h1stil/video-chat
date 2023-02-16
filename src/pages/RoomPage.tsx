@@ -13,6 +13,7 @@ import { VideoCameraOutlined } from "@ant-design/icons";
 import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
 
+
 const RoomPage = () => {
   const { id } = useParams();
   const {
@@ -107,6 +108,7 @@ const RoomPage = () => {
     </div>
   ) : (
     <Empty className="epty__messages" description={t("txtNoMessages")} />
+
   );
 };
 
