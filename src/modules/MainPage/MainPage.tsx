@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { devEnter } from "../../values/devValues";
 import { IUser } from "./components/ContactList/ContactList";
 import { useTranslation } from "react-i18next";
+import RoomPage from "../../pages/RoomPage";
 
 const MainPage = () => {
   const { t } = useTranslation();
@@ -40,7 +41,8 @@ const MainPage = () => {
         onSearch={onSearch}
         inputValue={inputValue}
       />
-      <div className="main__dialog">
+      <RoomPage />
+      {/* <div className="main__dialog">
         <Dialog />
         <div className="dialog__send-message">
           <Input
@@ -62,7 +64,7 @@ const MainPage = () => {
             )}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

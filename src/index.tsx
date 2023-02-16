@@ -14,7 +14,9 @@ root.render(
   // <React.StrictMode>
   <BrowserRouter>
     <RoomProvider>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </RoomProvider>
   </BrowserRouter>
   // </React.StrictMode>

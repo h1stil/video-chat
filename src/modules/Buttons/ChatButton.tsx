@@ -3,12 +3,11 @@ export const ChatButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
     <button
       className="btn"
       onClick={onClick}
-      aria-label={"Open/Close text-chat"}
-      title="Open/Close text-chat"
+      aria-label={"Открыть/Закрыть чат"}
+      title="Открыть/Закрыть чат"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        style={{ width: "60px", height: "60px" }}
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { RoomContext } from "../../context/RoomContext";
+import "./ChatInput.scss";
 
 export const ChatInput: React.FC = () => {
   const [message, setMessage] = useState("");
@@ -14,7 +15,7 @@ export const ChatInput: React.FC = () => {
           setMessage("");
         }}
       >
-        <div className="flex ">
+        <div className="input-message__container">
           <textarea
             className="border rounded"
             onChange={(e) => setMessage(e.target.value)}
@@ -24,8 +25,7 @@ export const ChatInput: React.FC = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               style={{
-                width: "60px",
-                height: "60px",
+                width: "30px",
                 transform: "rotate(90deg)",
               }}
               fill="none"

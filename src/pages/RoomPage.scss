@@ -1,0 +1,32 @@
+.video__main {
+  flex-grow: 1;
+}
+
+.video__container {
+  .page__title {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.04);
+    margin-bottom: 10px;
+  }
+
+  .video__list {
+    display: none;
+  }
+
+  .btn {
+    border: none;
+    background-color: inherit;
+    width: 50px;
+    margin: 0;
+    transition: all 0.3s;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .controls {
+    display: flex;
+    align-items: self-start;
+    justify-content: center;
+    gap: 25px;
+  }
+}
