@@ -2,6 +2,7 @@ import axios from "axios";
 import { devEnter } from "../../values/devValues";
 import { IRegForm, ILogForm } from "../../values/globalValues";
 import isBan from "./isBan";
+import jwt_decode from "jwt-decode";
 
 export default async function submitForm(
   type: string,
@@ -27,6 +28,11 @@ export default async function submitForm(
         window.localStorage.removeItem("AUTH");
       }
       return devEnter ? 201 : response.status;
+    })
+    .then(() => {
+      const decode: any = jwt_decode(window.localStorage.getItem("AUTH")!);
+      window.localStorage.setItem("userId", decode.id + "");
+      window.localStorage.setItem("name", decode.name);
     })
     .catch((err) => {
       const errText = document.getElementById("errorLogin");

@@ -15,6 +15,7 @@ import { devEnter } from "../../values/devValues";
 import { IUser } from "./components/ContactList/ContactList";
 import { useTranslation } from "react-i18next";
 import RoomPage from "../../pages/RoomPage";
+import { CreateButton } from "../Buttons/CreateButton";
 
 const MainPage = () => {
   const { t } = useTranslation();
@@ -36,35 +37,7 @@ const MainPage = () => {
 
   return (
     <div className="main">
-      <ContainerDialog
-        props={Contacts}
-        onSearch={onSearch}
-        inputValue={inputValue}
-      />
-      <RoomPage />
-      {/* <div className="main__dialog">
-        <Dialog />
-        <div className="dialog__send-message">
-          <Input
-            className="send-message__value"
-            placeholder={t("txtEnterMessage") || "Введите текст сообщения"}
-            onChange={(e) => {
-              setSendMessage(e.target.value);
-            }}
-          />
-          <div className="send-message__panel">
-            <VideoCameraOutlined className="panel__video" />
-            {sendMessage ? (
-              <SendOutlined onClick={() => console.log(sendMessage)} />
-            ) : (
-              <div className="panel__record" onClick={() => recordMessage()}>
-                <AudioOutlined className="panel__record_start" />
-                <AudioMutedOutlined className="panel__record_stop active" />
-              </div>
-            )}
-          </div>
-        </div>
-      </div> */}
+      <CreateButton />
     </div>
   );
 };

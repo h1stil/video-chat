@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./video.css";
 import "./RoomPage.scss";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RoomContext } from "../context/RoomContext";
 import { VideoPleer } from "../modules/VideoPleer";
 import { PeerState } from "../context/reducers/peerReducer";
@@ -12,7 +12,9 @@ import { ws } from "../values/globalValues";
 import { VideoCameraOutlined } from "@ant-design/icons";
 import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
-
+import ContainerDialog from "../modules/MainPage/utils/ContainerDialogs";
+import { IUser } from "../modules/MainPage/components/ContactList/ContactList";
+import { devEnter } from "../values/devValues";
 
 const RoomPage = () => {
   const { id } = useParams();
@@ -59,11 +61,32 @@ const RoomPage = () => {
 
   const { t } = useTranslation();
 
-  return activeUser() ? (
+  let Contacts: IUser[];
+  localStorage.getItem("friends")
+    ? (Contacts = JSON.parse(localStorage.getItem("friends")!))
+    : (Contacts = []);
+
+  const [sendMessage, setSendMessage] = useState("");
+  const onSearch = (value: string) => value;
+  const [inputValue] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!(window.localStorage.getItem("AUTH") || devEnter)) {
+      navigate("/login");
+    }
+  }, [window.localStorage]);
+
+  return (
     <div className="video__main">
       <section className="video__frames">
         <div className="video__container container">
           <h2 className="page__title">{`Chat Room with ${activeUser()}`}</h2>
+          <ContainerDialog
+            props={Contacts}
+            onSearch={onSearch}
+            inputValue={inputValue}
+          />
           <div className="controls">
             <VideoCameraOutlined
               style={{ fontSize: "36px", display: "block" }}
@@ -77,7 +100,7 @@ const RoomPage = () => {
             {screenSharingVideo && (
               <li className="video__shared" key={stream?.id + "ufc"}>
                 <VideoPleer stream={screenSharingVideo} />
-                <p>{userId}</p>
+                <p>{`Screen shared`}</p>
               </li>
             )}
 
@@ -86,7 +109,7 @@ const RoomPage = () => {
             {screenSharedId !== userId && (
               <li className="video__item" key={-1}>
                 {stream && <VideoPleer stream={stream} />}
-                <p>{userId}</p>
+                <p>{`${userName} your id: ${userId}`}</p>
               </li>
             )}
             {Object.values(peersToShow as PeerState)
@@ -106,9 +129,6 @@ const RoomPage = () => {
         </div>
       </section>
     </div>
-  ) : (
-    <Empty className="epty__messages" description={t("txtNoMessages")} />
-
   );
 };
 
