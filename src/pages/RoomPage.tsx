@@ -77,7 +77,7 @@ const RoomPage = () => {
     }
   }, [window.localStorage]);
 
-  return activeUser() ? (
+  return (
     <div className="video__main">
       <section className="video__frames">
         <div className="video__container container">
@@ -100,7 +100,7 @@ const RoomPage = () => {
             {screenSharingVideo && (
               <li className="video__shared" key={stream?.id + "ufc"}>
                 <VideoPleer stream={screenSharingVideo} />
-                <p>{userId}</p>
+                <p>{`Screen shared`}</p>
               </li>
             )}
 
@@ -109,7 +109,7 @@ const RoomPage = () => {
             {screenSharedId !== userId && (
               <li className="video__item" key={-1}>
                 {stream && <VideoPleer stream={stream} />}
-                <p>{userId}</p>
+                <p>{`${userName} your id: ${userId}`}</p>
               </li>
             )}
             {Object.values(peersToShow as PeerState)
@@ -129,8 +129,6 @@ const RoomPage = () => {
         </div>
       </section>
     </div>
-  ) : (
-    <Empty className="epty__messages" description={t("txtNoMessages")} />
   );
 };
 
