@@ -9,11 +9,10 @@ export default async function submitForm(
   values: IRegForm | ILogForm
 ) {
   const path = type === "register" ? "/auth/registrate" : "/auth/login";
-
   const respCode = axios
     .post(
       // `https://pik-chat-backend.onrender.com${path}`,
-      `http://localhost:5000${path}`,
+      `${process.env.REACT_APP_HOST}${path}`,
       values
       // { timeout: 10000 }
     )
@@ -29,10 +28,11 @@ export default async function submitForm(
       }
       return devEnter ? 201 : response.status;
     })
-    .then(() => {
+    .then((respCode) => {
       const decode: any = jwt_decode(window.localStorage.getItem("AUTH")!);
       window.localStorage.setItem("userId", decode.id + "");
       window.localStorage.setItem("name", decode.name);
+      return respCode;
     })
     .catch((err) => {
       const errText = document.getElementById("errorLogin");
@@ -44,6 +44,5 @@ export default async function submitForm(
       window.localStorage.removeItem("AUTH");
       return err.response.status;
     });
-
   return respCode;
 }
