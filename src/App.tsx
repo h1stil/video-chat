@@ -8,9 +8,11 @@ import Page404 from "./pages/Page404";
 import StartPage from "./pages/StartPage";
 import MainPage from "./modules/MainPage/MainPage";
 import Video from "./pages/video";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import RoomPage from "./pages/RoomPage";
+import ContainerDialog from "./modules/MainPage/utils/ContainerDialogs";
+import { IUser } from "./modules/MainPage/components/ContactList/ContactList";
 // import { WS } from "./globalValues";
 
 function App() {
@@ -18,6 +20,15 @@ function App() {
     const WS = process.env.REACT_APP_WS as string;
     socketIOClient(WS);
   }, []);
+
+  let Contacts: IUser[];
+  localStorage.getItem("friends")
+    ? (Contacts = JSON.parse(localStorage.getItem("friends")!))
+    : (Contacts = []);
+
+  const onSearch = (value: string) => value;
+  const [inputValue] = useState("");
+
   return (
     <div className="wrapper">
       <Header />
@@ -27,6 +38,16 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/im" element={<MainPage />} />
+          <Route
+            path="/contacts"
+            element={
+              <ContainerDialog
+                props={Contacts}
+                onSearch={onSearch}
+                inputValue={inputValue}
+              />
+            }
+          />
           <Route path="/video" element={<Video />} />
           <Route path="/room/:id" element={<RoomPage />} />
           <Route path="*" element={<Page404 />} />
