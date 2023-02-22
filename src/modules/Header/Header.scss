@@ -35,6 +35,9 @@ a {
   cursor: pointer;
   position: relative;
   top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
 .header__left {

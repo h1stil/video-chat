@@ -10,10 +10,7 @@ import { ChatButton } from "../modules/Buttons/ChatButton";
 import { Chat } from "../modules/chat/Chat";
 import { ws } from "../values/globalValues";
 import { VideoCameraOutlined } from "@ant-design/icons";
-import { Empty } from "antd";
 import { useTranslation } from "react-i18next";
-import ContainerDialog from "../modules/MainPage/utils/ContainerDialogs";
-import { IUser } from "../modules/MainPage/components/ContactList/ContactList";
 import { devEnter } from "../values/devValues";
 
 const RoomPage = () => {
@@ -60,15 +57,6 @@ const RoomPage = () => {
   };
 
   const { t } = useTranslation();
-
-  let Contacts: IUser[];
-  localStorage.getItem("friends")
-    ? (Contacts = JSON.parse(localStorage.getItem("friends")!))
-    : (Contacts = []);
-
-  const [sendMessage, setSendMessage] = useState("");
-  const onSearch = (value: string) => value;
-  const [inputValue] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -82,11 +70,6 @@ const RoomPage = () => {
       <section className="video__frames">
         <div className="video__container container">
           <h2 className="page__title">{`Chat Room with ${activeUser()}`}</h2>
-          <ContainerDialog
-            props={Contacts}
-            onSearch={onSearch}
-            inputValue={inputValue}
-          />
           <div className="controls">
             <VideoCameraOutlined
               style={{ fontSize: "36px", display: "block" }}
