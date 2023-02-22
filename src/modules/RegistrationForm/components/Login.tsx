@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Input } from "antd";
-import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import "./Login.scss";
 import submitForm from "../../drivers/submitForm";
 import { ILogForm } from "../../../values/globalValues";
@@ -35,20 +35,6 @@ const Login: FC = () => {
           initialValues={{ remember: true }}
           onFinish={onFinish}
         >
-          <Form.Item
-            name="name"
-            rules={[
-              {
-                required: true,
-                message: t("txtEnterUsername") || "2",
-              },
-            ]}
-          >
-            <Input
-              prefix={<UserOutlined className="auth__form_item-icon" />}
-              placeholder={t("txtUsername") || "2"}
-            />
-          </Form.Item>
           <Form.Item
             name="email"
             rules={[

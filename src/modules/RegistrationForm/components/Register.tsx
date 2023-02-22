@@ -21,7 +21,6 @@ const Register: FC = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values: IRegForm) => {
-    // console.log("Received values of form: ", values);
     const respCode = await submitForm("register", values);
     if (respCode === 201) {
       setRegistrSuccess(true);
