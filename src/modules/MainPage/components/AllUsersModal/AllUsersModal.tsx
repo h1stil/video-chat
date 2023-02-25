@@ -46,7 +46,7 @@ const AllUsersModal = () => {
     localStorage.getItem("friends")
       ? (friends = JSON.parse(localStorage.getItem("friends")!))
       : (friends = []);
-    if (friends.some(({ id }) => id === user.id)) {
+    if (friends.some(({ email }) => email === user.email)) {
       null;
     } else {
       friends.push(user);
@@ -95,7 +95,7 @@ const AllUsersModal = () => {
                     addToFriends({
                       avatar: user.avatar!,
                       name: user.name,
-                      id: user.id,
+                      email: user.email,
                       isOnline: false,
                     })
                   }
@@ -103,7 +103,7 @@ const AllUsersModal = () => {
                   <Contact
                     user={{
                       avatar: user.avatar as string,
-                      id: user.id,
+                      email: user.email,
                       name: user.name,
                       isOnline: false,
                     }}

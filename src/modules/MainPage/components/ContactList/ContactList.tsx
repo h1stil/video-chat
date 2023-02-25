@@ -8,7 +8,7 @@ export interface IUser {
   name: string;
   avatar: string;
   isOnline: boolean;
-  id: number;
+  email: string;
 }
 
 export interface IContact {
@@ -43,7 +43,7 @@ const ContactList: FC<PostsProps> = ({ props, onSearch }) => {
       </div>
       <div className="contacts">
         {props.length ? (
-          props.map((item) => <Contact key={item.id} user={item} />)
+          props.map((item) => <Contact key={item.email} user={item} />)
         ) : (
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}

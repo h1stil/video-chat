@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 const Dialog = () => {
   const { t } = useTranslation();
   const initialState: IUser = {
-    id: NaN,
+    email: "",
     avatar: "",
     isOnline: false,
     name: "",
