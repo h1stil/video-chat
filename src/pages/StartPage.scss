@@ -1,9 +1,27 @@
-.startpage__pic {
+.startpage__picbox {
   display: block;
+  position: relative;
   margin: auto;
 }
 
 .startpage__mainzone {
   display: flex;
   height: 100%;
+}
+
+.startpage__greetbox {
+  display: flex;
+  position: absolute;
+  width: 13%;
+  font-size: calc(12px + 6 * (100vw - 320px) / 880);
+  right: 26%;
+  top: 15%;
+}
+
+.startpage__greetcat {
+  display: flex;
+  position: absolute;
+  left: 30%;
+  bottom: 15%;
+  font-size: calc(12px + 6 * (100vw - 320px) / 880);
 }
