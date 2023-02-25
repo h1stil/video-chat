@@ -51,6 +51,7 @@ const Header = () => {
       window.localStorage.removeItem("userId");
       window.localStorage.removeItem("name");
       window.localStorage.removeItem("active-contact");
+      window.localStorage.removeItem("friends");
       navigate("/");
     }
   };
