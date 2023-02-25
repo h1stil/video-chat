@@ -48,6 +48,9 @@ const Header = () => {
     } else {
       setBtnLogText(t("logIn"));
       window.localStorage.removeItem("AUTH");
+      window.localStorage.removeItem("userId");
+      window.localStorage.removeItem("name");
+      window.localStorage.removeItem("active-contact");
       navigate("/");
     }
   };
