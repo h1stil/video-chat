@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "./video.css";
 import "./RoomPage.scss";
 import { useNavigate, useParams } from "react-router-dom";
@@ -30,10 +30,12 @@ const RoomPage = () => {
 
   const toggleCamera = () => {
     const videoDiv = document.getElementById("video__list");
-    if (videoDiv?.style.display === "none") {
-      videoDiv.style.display = "block";
-    } else {
-      videoDiv!.style.display = "none";
+    if (videoDiv) {
+      if (videoDiv.style.display === "none" || !videoDiv.style.display) {
+        videoDiv.style.display = "block";
+      } else {
+        videoDiv.style.display = "none";
+      }
     }
   };
 
@@ -69,12 +71,15 @@ const RoomPage = () => {
     <div className="video__main">
       <section className="video__frames">
         <div className="video__container container">
-          <h2 className="page__title">{`Chat Room with ${activeUser()}`}</h2>
+          <h2 className="page__title">{`${t(
+            "txtChatRoomWith"
+          )} ${activeUser()}`}</h2>
           <div className="controls">
             <VideoCameraOutlined
               style={{ fontSize: "36px", display: "block" }}
               onClick={toggleCamera}
               className="btn btn-camera"
+              title={t("txtStartVideoChat") || "Начать / завершить видео чат"}
             />
             <ShareScreenButton onClick={shareScreen} />
             <ChatButton onClick={toggleChat} />
