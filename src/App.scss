@@ -68,11 +68,11 @@ select {
   display: flex;
   flex-direction: column;
   overflow: auto;
-
 }
 
 .content__container {
   flex-grow: 1;
+  padding: 10px 15px;
 }
 
 .ant-btn {
