@@ -29,9 +29,11 @@ export default async function submitForm(
       return devEnter ? 201 : response.status;
     })
     .then((respCode) => {
-      const decode: any = jwt_decode(window.localStorage.getItem("AUTH")!);
-      window.localStorage.setItem("userId", decode.id + "");
-      window.localStorage.setItem("name", decode.name);
+      if (type != "register") {
+        const decode: any = jwt_decode(window.localStorage.getItem("AUTH")!);
+        window.localStorage.setItem("userId", decode.id + "");
+        window.localStorage.setItem("name", decode.name);
+      }
       return respCode;
     })
     .catch((err) => {
