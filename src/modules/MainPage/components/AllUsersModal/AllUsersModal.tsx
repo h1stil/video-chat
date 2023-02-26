@@ -21,8 +21,14 @@ const AllUsersModal = () => {
   }, []);
 
   const [open, setOpen] = useState(false);
+  const [needReload, setNeedReload] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    if (needReload) {
+      window.location.reload();
+    }
+  };
 
   const style = {
     position: "absolute",
@@ -42,6 +48,7 @@ const AllUsersModal = () => {
   const [inputValue, setInputValue] = useState("");
 
   const addToFriends = (user: IUser) => {
+    setNeedReload(true);
     let friends: IUser[];
     localStorage.getItem("friends")
       ? (friends = JSON.parse(localStorage.getItem("friends")!))
