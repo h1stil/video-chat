@@ -1,10 +1,13 @@
+import { useTranslation } from "react-i18next";
+
 export const ChatButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
+  const { t } = useTranslation();
   return (
     <button
       className="btn"
       onClick={onClick}
-      aria-label={"Открыть/Закрыть чат"}
-      title="Открыть/Закрыть чат"
+      aria-label={t("txtOpenCloseChat") || "Открыть/Закрыть чат"}
+      title={t("txtOpenCloseChat") || "Открыть/Закрыть чат"}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

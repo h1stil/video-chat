@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
 import { RoomContext } from "../../context/RoomContext";
 import "./ChatInput.scss";
+import { useTranslation } from "react-i18next";
 
 export const ChatInput: React.FC = () => {
   const [message, setMessage] = useState("");
   const { roomId, sendMessage, userId } = useContext(RoomContext);
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -21,7 +23,11 @@ export const ChatInput: React.FC = () => {
             onChange={(e) => setMessage(e.target.value)}
             value={message}
           />
-          <button type="submit" className="btn btn-video" title="Send message">
+          <button
+            type="submit"
+            className="btn btn-video"
+            title={t("txtSendMessage") || "Отправить сообщение"}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               style={{

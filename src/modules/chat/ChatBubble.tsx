@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { RoomContext } from "../../context/RoomContext";
 import { Message } from "./Chat";
 import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 
 export const ChatBubble: React.FC<{ message: Message }> = ({ message }) => {
   const { peers, userId } = useContext(RoomContext);
@@ -9,6 +10,7 @@ export const ChatBubble: React.FC<{ message: Message }> = ({ message }) => {
   const userName = author || "Anonimus";
   const isSelf = message.author === userId;
   const time = new Date(message.timestamp).toLocaleTimeString();
+  const { t } = useTranslation();
   return (
     <div
       className={classNames("m-2 flex", {
@@ -39,7 +41,7 @@ export const ChatBubble: React.FC<{ message: Message }> = ({ message }) => {
             // "text-left": !isSelf,
           })}
         >
-          {isSelf ? "Вы" : userName}
+          {isSelf ? t("txtYou") : userName}
         </div>
       </div>
     </div>

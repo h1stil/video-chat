@@ -37,5 +37,17 @@
   "txtNotFound": "Не найдено",
   "txtOnline": "в сети",
   "txtOffline": "не в сети",
-  "txtNoMessages": "Нет сообщений"
+  "txtNoMessages": "Нет сообщений",
+
+  "txtBtnNewMeeting": "Начать общение",
+
+  "txtShareScreen": "Демонстрация экрана",
+  "txtShareScreenOnOff": "Демонстрация экрана вкл/выкл",
+  "txtOpenCloseChat": "Открыть/закрыть текстовый чат",
+  "txtStartVideoChat": "Открыть/закрыть видео чат",
+
+  "txtChatRoomWith": "Комната для общения с",
+  "txtSendMessage": "Отправить сообщение",
+
+  "txtYou": "Вы"
 }

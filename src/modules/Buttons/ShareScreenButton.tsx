@@ -1,12 +1,15 @@
+import { useTranslation } from "react-i18next";
+
 export const ShareScreenButton: React.FC<{ onClick: () => void }> = ({
   onClick,
 }) => {
+  const { t } = useTranslation();
   return (
     <button
       className="btn btn-video"
       onClick={onClick}
-      aria-label={"Демонстрация экрана"}
-      title="Демонстрация экрана вкл/выкл"
+      aria-label={t("txtShareScreen") || "Демонстрация экрана"}
+      title={t("txtShareScreenOnOff") || "Демонстрация экрана вкл/выкл"}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
