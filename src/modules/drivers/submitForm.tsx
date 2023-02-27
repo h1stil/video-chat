@@ -10,12 +10,7 @@ export default async function submitForm(
 ) {
   const path = type === "register" ? "/auth/registrate" : "/auth/login";
   const respCode = axios
-    .post(
-      // `https://pik-chat-backend.onrender.com${path}`,
-      `${process.env.REACT_APP_HOST}${path}`,
-      values
-      // { timeout: 10000 }
-    )
+    .post(`${process.env.REACT_APP_HOST}${path}`, values)
     .then((response) => {
       if (
         (response.status === 201 || devEnter) &&

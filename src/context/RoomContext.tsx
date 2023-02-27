@@ -84,7 +84,6 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
 
   const getUsers = ({ members }: { members: Record<string, IPeer> }) => {
     dispatch(addAllPeersAction(members));
-    console.log(members);
   };
 
   const removePeer = (peerId: string) => {
@@ -136,7 +135,6 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
   };
 
   const addMessage = (message: Message) => {
-    console.log(message);
     chatDispatch(addMessageAction(message));
   };
 
@@ -195,8 +193,6 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
     if (!me || !stream) return;
 
     ws.on("user-joined", ({ peerId, userName: name }) => {
-      console.log(name, "name");
-      console.log(userName, "userName");
       dispatch(addPeerNameAction(peerId, name));
 
       const call = me.call(peerId, stream, {
@@ -218,8 +214,6 @@ export const RoomProvider: React.FunctionComponent<Props> = ({
       });
     });
   }, [me, stream, userName, screenStream]);
-
-  console.log({ peers });
 
   return (
     <RoomContext.Provider

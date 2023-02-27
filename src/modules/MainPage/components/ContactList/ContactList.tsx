@@ -3,7 +3,6 @@ import Contact from "../Contact/Contact";
 import { Input, Empty } from "antd";
 import AllUsersModal from "../AllUsersModal/AllUsersModal";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 
 export interface IUser {
   name: string;
@@ -25,11 +24,6 @@ export interface PostsProps {
 const ContactList: FC<PostsProps> = ({ props, onSearch }) => {
   const { t } = useTranslation();
   const { Search } = Input;
-  console.log(props);
-
-  useEffect(() => {
-    console.log("props " + props.length);
-  }, [window.localStorage]);
 
   return (
     <div>
