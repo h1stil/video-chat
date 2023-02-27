@@ -1,9 +1,10 @@
 import "./MainPage.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { devEnter } from "../../values/devValues";
 import { IUser } from "./components/ContactList/ContactList";
 import { CreateButton } from "../Buttons/CreateButton";
+import ContainerDialog from "./utils/ContainerDialogs";
 
 const MainPage = () => {
   let Contacts: IUser[];
@@ -13,6 +14,9 @@ const MainPage = () => {
 
   const navigate = useNavigate();
 
+  const onSearch = (value: string) => value;
+  const [inputValue] = useState("");
+
   useEffect(() => {
     if (!(window.localStorage.getItem("AUTH") || devEnter)) {
       navigate("/login");
@@ -20,8 +24,17 @@ const MainPage = () => {
   }, [window.localStorage]);
 
   return (
-    <div className="main">
-      <CreateButton />
+    <div>
+      <div>
+        <ContainerDialog
+          props={Contacts}
+          onSearch={onSearch}
+          inputValue={inputValue}
+        />
+      </div>
+      <div className="main">
+        <CreateButton />
+      </div>
     </div>
   );
 };
