@@ -1,0 +1,9 @@
+.input-message__container {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  textarea {
+    width: 100%;
+    border-radius: 10px;
+  }
+}

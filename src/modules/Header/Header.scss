@@ -1,0 +1,55 @@
+@import "../../UI/constants.scss";
+
+.header {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  color: $mainColor;
+  background-color: $brightColor;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px 0px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+a {
+  text-decoration: none;
+}
+
+.header__logo,
+.header__chat {
+  color: $secondMainColor;
+}
+
+.header__logo {
+  width: 130px;
+  height: 90px;
+  background-image: url("../../../public/logo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.header__chat {
+  cursor: pointer;
+  position: relative;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header__left {
+  display: flex;
+  position: relative;
+  top: -10px;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

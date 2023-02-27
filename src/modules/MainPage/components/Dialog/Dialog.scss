@@ -1,0 +1,27 @@
+.dialog__user {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.04);
+}
+
+.user__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  .user__status_online {
+    align-items: center;
+    &::after {
+      content: "";
+      display: inline-block;
+      background-color: rgb(58, 243, 58);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      margin: 0px 0px 1px 3px;
+    }
+  }
+}
+
+.dialog__chat {
+  overflow: auto;
+  height: calc(100vh - 300px);
+}

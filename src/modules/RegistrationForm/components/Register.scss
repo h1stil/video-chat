@@ -1,0 +1,20 @@
+.register__wrapper {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 20px 0 20px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.register__success {
+  margin: 90px 0;
+}
+
+.auth__form_reg-button {
+  width: 100%;
+  margin-top: 5px;
+}
