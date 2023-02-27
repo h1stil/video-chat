@@ -92,8 +92,6 @@ const RoomPage = () => {
               </li>
             )}
 
-            {/* style={screenSharingVideo ? { height: "20%" } : { height: "80%" }} */}
-
             {screenSharedId !== userId && (
               <li className="video__item" key={-1}>
                 {stream && <VideoPleer stream={stream} />}

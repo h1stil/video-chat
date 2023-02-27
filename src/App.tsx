@@ -13,7 +13,6 @@ import socketIOClient from "socket.io-client";
 import RoomPage from "./pages/RoomPage";
 import ContainerDialog from "./modules/MainPage/utils/ContainerDialogs";
 import { IUser } from "./modules/MainPage/components/ContactList/ContactList";
-// import { WS } from "./globalValues";
 
 function App() {
   useEffect(() => {
