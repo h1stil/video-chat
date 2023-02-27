@@ -7,5 +7,9 @@ export const CreateButton: React.FC = () => {
   const createRoom = () => {
     ws.emit("create-room");
   };
-  return <button onClick={createRoom}>{t("txtBtnNewMeeting")}</button>;
+  return (
+    <button id="createRoom" onClick={createRoom}>
+      {t("txtBtnNewMeeting")}
+    </button>
+  );
 };

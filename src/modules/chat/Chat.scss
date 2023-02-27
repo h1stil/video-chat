@@ -13,3 +13,17 @@
     font-size: 0.7em;
   }
 }
+
+#createRoom {
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 10px 30px;
+  background-color: #ffd463;
+  color: $secondMainColorDark;
+  font-family: sans-serif;
+  border: none;
+  transition: all 0.4s;
+  &:hover {
+    transform: scale(1.05);
+  }
+}

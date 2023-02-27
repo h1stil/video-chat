@@ -11,7 +11,6 @@ import Video from "./pages/video";
 import { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import RoomPage from "./pages/RoomPage";
-import ContainerDialog from "./modules/MainPage/utils/ContainerDialogs";
 import { IUser } from "./modules/MainPage/components/ContactList/ContactList";
 // import { WS } from "./globalValues";
 
@@ -26,9 +25,6 @@ function App() {
     ? (Contacts = JSON.parse(localStorage.getItem("friends")!))
     : (Contacts = []);
 
-  const onSearch = (value: string) => value;
-  const [inputValue] = useState("");
-
   return (
     <div className="wrapper">
       <Header />
@@ -38,16 +34,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/im" element={<MainPage />} />
-          <Route
-            path="/contacts"
-            element={
-              <ContainerDialog
-                props={Contacts}
-                onSearch={onSearch}
-                inputValue={inputValue}
-              />
-            }
-          />
           <Route path="/video" element={<Video />} />
           <Route path="/room/:id" element={<RoomPage />} />
           <Route path="*" element={<Page404 />} />

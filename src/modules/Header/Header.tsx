@@ -64,14 +64,6 @@ const Header = () => {
     }
   };
 
-  const onClickContacts = () => {
-    if (window.localStorage.getItem("AUTH") || devEnter) {
-      navigate("/contacts");
-    } else {
-      navigate("/login");
-    }
-  };
-
   return (
     <div className="header">
       <div className="header__left">
@@ -81,7 +73,6 @@ const Header = () => {
         {window.localStorage.getItem("AUTH") ? (
           <div className="header__chat">
             <h2 onClick={() => onClickChat()}>{t("txtChat")}</h2>
-            <h2 onClick={() => onClickContacts()}> {t("txtContacts")}</h2>
           </div>
         ) : null}
       </div>
