@@ -49,5 +49,7 @@
   "txtChatRoomWith": "Комната для общения с",
   "txtSendMessage": "Отправить сообщение",
 
-  "txtYou": "Вы"
+  "txtYou": "Вы",
+
+  "txtAccessIsDenied": "Доступ запрещен"
 }

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
@@ -7,16 +7,35 @@ import submitForm from "../../drivers/submitForm";
 import { ILogForm } from "../../../values/globalValues";
 import { useTranslation } from "react-i18next";
 import isBan from "../../drivers/isBan";
+import jwt_decode from "jwt-decode";
 
 const Login: FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const [errorLogin, setErrorLogin] = useState<string>("");
+
   const onFinish = async (values: ILogForm) => {
     const respCode = await submitForm("login", values);
-    if (respCode === 201 && !isBan()) {
+    const isBanned = await isBan(values.email);
+    if (respCode === 201 && !isBanned) {
+      const decode: any = jwt_decode(window.localStorage.getItem("AUTH")!);
+      window.localStorage.setItem("userId", decode.id + "");
+      window.localStorage.setItem("name", decode.name);
       setTimeout(() => navigate("/im"), 100);
-    }
+    } else if (isBanned) {
+      window.localStorage.removeItem("AUTH");
+      const errText = t("txtAccessIsDenied")
+        ? t("txtAccessIsDenied")
+        : "Доступ запрещен";
+      setErrorLogin(errText);
+    } else if (respCode === 401) {
+      window.localStorage.removeItem("AUTH");
+      const errText = t("txtErrorLogin")
+        ? t("txtErrorLogin")
+        : "Введен неверный логин или пароль";
+      setErrorLogin(errText);
+    } else setErrorLogin("");
   };
 
   return (
@@ -25,7 +44,7 @@ const Login: FC = () => {
         <h2 className="auth__top__title">{t("txtEnterAcc")}</h2>
         <p className="hint-text auth__top__text">{t("txtHintEnter")}</p>
         <div className="err-text ant-form-item-explain-error" id="errorLogin">
-          {t("txtErrorLogin")}
+          {errorLogin}
         </div>
       </div>
       <div className="auth__bot">

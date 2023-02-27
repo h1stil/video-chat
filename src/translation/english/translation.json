@@ -49,5 +49,7 @@
   "txtChatRoomWith": "Chat Room with",
   "txtSendMessage": "Send message",
 
-  "txtYou": "You"
+  "txtYou": "You",
+
+  "txtAccessIsDenied": "Access is denied"
 }

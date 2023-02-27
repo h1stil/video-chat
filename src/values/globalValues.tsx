@@ -12,7 +12,7 @@ export interface IRegForm {
 }
 
 export interface ILogForm {
-  username: string;
+  email: string;
   password: string;
 }
 
