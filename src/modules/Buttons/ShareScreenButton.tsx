@@ -13,7 +13,6 @@ export const ShareScreenButton: React.FC<{ onClick: () => void }> = ({
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        // style={{ width: "60px", height: "60px" }}
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

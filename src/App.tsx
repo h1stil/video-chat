@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import RoomPage from "./pages/RoomPage";
 import { IUser } from "./modules/MainPage/components/ContactList/ContactList";
-// import { WS } from "./globalValues";
 
 function App() {
   useEffect(() => {
