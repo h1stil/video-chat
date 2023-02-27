@@ -12,6 +12,9 @@
 
   .video__list {
     display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .btn {

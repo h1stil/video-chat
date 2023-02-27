@@ -32,7 +32,7 @@ const RoomPage = () => {
     const videoDiv = document.getElementById("video__list");
     if (videoDiv) {
       if (videoDiv.style.display === "none" || !videoDiv.style.display) {
-        videoDiv.style.display = "block";
+        videoDiv.style.display = "flex";
       } else {
         videoDiv.style.display = "none";
       }
@@ -95,7 +95,7 @@ const RoomPage = () => {
             {screenSharedId !== userId && (
               <li className="video__item" key={-1}>
                 {stream && <VideoPleer stream={stream} />}
-                <p>{`${userName} your id: ${userId}`}</p>
+                {/* <p>{`${userName} your id: ${userId}`}</p> */}
               </li>
             )}
             {Object.values(peersToShow as PeerState)

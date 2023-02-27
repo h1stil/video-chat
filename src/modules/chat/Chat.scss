@@ -3,6 +3,9 @@
 .dialog-message__container {
   border: 1px solid black;
   border-radius: 10px;
+  overflow-y: auto;
+  max-height: 500px;
+
   .dialog-message__message {
     display: flex;
     flex-direction: column-reverse;
