@@ -8,7 +8,7 @@ import Page404 from "./pages/Page404";
 import StartPage from "./pages/StartPage";
 import MainPage from "./modules/MainPage/MainPage";
 import Video from "./pages/video";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import RoomPage from "./pages/RoomPage";
 import { IUser } from "./modules/MainPage/components/ContactList/ContactList";
