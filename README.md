@@ -62,7 +62,6 @@ Application contains:
 - user auth
 - starting page
 - communication room
-- admin page
 
 ## Description of function blocks
 
@@ -105,12 +104,6 @@ Application contains:
 - If the text chat is open user can enter a message in the input form and send it by clicking “Send” button.
 - There is a list of users to invite one of them in the room.
 - There is a form with user id input and a button “To invite”.
-
-### Admin page
-
-- This room is available only for users, who has a role of “ADMIN”.
-- Displays the list of all members.
-- There is a form with reason for ban input and a button “Ban/Unban”.
 
 ### Welcome route - max 7 points
 
@@ -173,13 +166,14 @@ Application contains:
 - [ ] При первом запуске приложения отображается стартовая страница 15
 - [ ] Случайное приветствие 10
 
-# Авторизация пользователя 120
+# Авторизация пользователя 140
 
 - [ ] При нажатии на регистрацию пользователь вводит свою почту и пароль. При успешном вводе данные отправляются на сервер. 30
 - [ ] При нажатии на вход пользователь вводит свою почту и пароль, и, в случае существующего аккаунта, успешно входит в приложение. При успешном вводе данные отправляются на сервер 30
 - [ ] При повторном запуске приложения, в случае если пользователь авторизован, сразу открывается страница приложения 15
 - [ ] Реализован выход из аккаунта 15
 - [ ] Валидация форм 30
+- [ ] Если пользователь был забанен, то доступ запрещен 20 (можно проверить использовав логин user@mail.ru пароль: user)
 
 # Страница чата 60
 
