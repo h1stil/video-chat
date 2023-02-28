@@ -98,14 +98,15 @@ const AllUsersModal = () => {
                 <div
                   className="all-users__item"
                   key={user.id}
-                  onClick={() =>
+                  onClick={(e) => {
+                    e.currentTarget.classList.add("contact__choosen");
                     addToFriends({
                       avatar: user.avatar!,
                       name: user.name,
                       email: user.email,
                       isOnline: false,
-                    })
-                  }
+                    });
+                  }}
                 >
                   <Contact
                     user={{

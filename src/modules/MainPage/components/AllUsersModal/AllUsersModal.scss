@@ -17,4 +17,11 @@
 .all-users__item {
   border-radius: 10px;
   display: flex;
+  &:hover {
+    background-color: #fae6b3;
+  }
+}
+
+.contact__choosen {
+  background-color: #fae6b3;
 }
