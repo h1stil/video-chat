@@ -27,6 +27,8 @@
   "txtRepeatPassword": "Repeat password",
   "txtThisNameVisible": "This name will be visible to other users",
   "txtPassMin3Sym": "Password must be minimum 3 symbols",
+  "txtRegFinish": "Registration completed",
+  "txtRedirectLogin": "Sign in with your email address and password",
 
   "txtPageNotFound": "Page not found...",
 
