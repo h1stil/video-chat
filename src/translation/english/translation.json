@@ -41,7 +41,8 @@
   "txtOffline": "offline",
   "txtNoMessages": "No messages",
 
-  "txtBtnNewMeeting": "Start new meeting",
+  "txtBtnNewMeeting": "Start new meeting with",
+  "txtChooseContact1": "Choose contact",
 
   "txtShareScreen": "Screen sharing",
   "txtShareScreenOnOff": "Screen sharing on/off",

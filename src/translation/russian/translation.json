@@ -41,7 +41,8 @@
   "txtOffline": "не в сети",
   "txtNoMessages": "Нет сообщений",
 
-  "txtBtnNewMeeting": "Начать общение",
+  "txtBtnNewMeeting": "Начать общение c",
+  "txtChooseContact1": "Выберите контакт",
 
   "txtShareScreen": "Демонстрация экрана",
   "txtShareScreenOnOff": "Демонстрация экрана вкл/выкл",
