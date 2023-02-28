@@ -58,6 +58,11 @@ const RoomPage = () => {
     return user ? JSON.parse(user).name : null;
   };
 
+  const activeUserEmail = () => {
+    const user = localStorage.getItem("active-contact");
+    return user ? JSON.parse(user).email : null;
+  };
+
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -71,9 +76,12 @@ const RoomPage = () => {
     <div className="video__main">
       <section className="video__frames">
         <div className="video__container container">
-          <h2 className="page__title">{`${t(
-            "txtChatRoomWith"
-          )} ${activeUser()}`}</h2>
+          <h2
+            className="page__title"
+            onClick={() =>
+              (window.location.href = `mailto:${activeUserEmail()}`)
+            }
+          >{`${t("txtChatRoomWith")} ${activeUser()}`}</h2>
           <div className="controls">
             <VideoCameraOutlined
               style={{ fontSize: "36px", display: "block" }}

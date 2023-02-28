@@ -11,7 +11,7 @@ const Contact: FC<IContact> = ({ user }) => {
       onClick={() => {
         localStorage.removeItem("active-contact");
         localStorage.setItem("active-contact", JSON.stringify(user));
-        window.location.href = `mailto:${user.email}`;
+        // window.location.href = `mailto:${user.email}`;
       }}
     >
       {!user.avatar ? (
