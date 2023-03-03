@@ -17,12 +17,39 @@ export const ChatBubble: React.FC<{ message: Message }> = ({ message }) => {
   const { t } = useTranslation();
   return (
     <div className={classNames("m-2 flex", {})}>
-      <div className="dialog-message__message">
-        <div className={classNames("inline-block py-2 px-4 rounded", {})}>
+      <div
+        className={classNames("dialog-message__message", {
+          "dialog-message__self": isSelf,
+        })}
+      >
+        <div
+          className={classNames(
+            "inline-block py-2 px-4 rounded",
+            "dialog-message__text"
+          )}
+        >
           {message.content}
-          <div className={classNames("message__time", {})}>{time}</div>
+          <div
+            className={classNames(
+              "message__time",
+              {
+                message__timeself: isSelf,
+              },
+              {
+                message__selfname: isSelf,
+                message__name: !isSelf,
+              }
+            )}
+          >
+            {time}
+          </div>
         </div>
-        <div className={classNames("text-md", {})}>
+        <div
+          className={classNames("text-md", {
+            message__selfname: isSelf,
+            message__name: !isSelf,
+          })}
+        >
           {isSelf ? t("txtYou") : userName}
         </div>
       </div>

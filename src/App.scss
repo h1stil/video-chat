@@ -34,6 +34,20 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: sans-serif;
+
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #eee;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #ffd463;
+    border-radius: 0px;
+    border: 1px solid black;
+  }
 }
 
 ul[class],
@@ -86,6 +100,25 @@ html[data-theme="dark"] {
   .header__chat {
     color: $mainColor;
   }
+  .dialog-message__message {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 212, 99, 0.1) 0%,
+      rgba(255, 212, 99, 0) 100%
+    );
+  }
+  .dialog-message__self {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 212, 99, 0) 0%,
+      rgba(255, 212, 99, 0.1) 100%
+    );
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #333;
+  }
+  transition: all 0.5s;
 }
 
 html.transition,
