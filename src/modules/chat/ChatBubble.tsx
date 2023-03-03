@@ -6,8 +6,12 @@ import { useTranslation } from "react-i18next";
 
 export const ChatBubble: React.FC<{ message: Message }> = ({ message }) => {
   const { peers, userId } = useContext(RoomContext);
-  const author = message.author && peers[message.author]?.userName;
-  const userName = author || "Anonimus";
+  let author = message.author && peers[message.author]?.userName;
+  const activeCont = localStorage.getItem("active-contact");
+  if (!author && activeCont) {
+    author = JSON.parse(activeCont).name;
+  }
+  const userName = author || "Anonimous";
   const isSelf = message.author === userId;
   const time = new Date(message.timestamp).toLocaleTimeString();
   const { t } = useTranslation();
