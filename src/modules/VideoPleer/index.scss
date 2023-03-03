@@ -3,3 +3,15 @@
   border: 1px solid #ffd463;
   // width: 70%;
 }
+
+video::-webkit-media-controls-timeline {
+  display: none;
+}
+
+video::-webkit-media-controls-current-time-display {
+  display: none;
+}
+
+video::-webkit-media-controls-picture-in-picture {
+  display: none;
+}

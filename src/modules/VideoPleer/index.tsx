@@ -15,6 +15,8 @@ export const VideoPleer: React.FC<{ stream: MediaStream }> = ({ stream }) => {
       ref={videoRef}
       autoPlay
       muted={false}
+      controls
+      disablePictureInPicture
     ></video>
   );
 };
