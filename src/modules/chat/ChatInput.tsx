@@ -8,20 +8,32 @@ export const ChatInput: React.FC = () => {
   const { roomId, sendMessage, userId } = useContext(RoomContext);
   const { t } = useTranslation();
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.code == "Enter" && (event.ctrlKey || event.metaKey)) {
+      submitMessage();
+    }
+  };
+
+  const submitMessage = () => {
+    sendMessage(message, roomId, userId);
+    setMessage("");
+  };
+
   return (
     <div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          sendMessage(message, roomId, userId);
-          setMessage("");
+          submitMessage();
         }}
       >
         <div className="input-message__container">
           <textarea
             className="border rounded"
+            id="messagearea"
             onChange={(e) => setMessage(e.target.value)}
             value={message}
+            onKeyPress={handleKeyPress}
           />
           <button
             type="submit"

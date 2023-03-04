@@ -24,7 +24,7 @@ const MainPage = () => {
   }, [window.localStorage]);
 
   return (
-    <div>
+    <div className="main__wrap">
       <div>
         <ContainerDialog
           props={Contacts}

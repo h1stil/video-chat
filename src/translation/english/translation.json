@@ -27,6 +27,8 @@
   "txtRepeatPassword": "Repeat password",
   "txtThisNameVisible": "This name will be visible to other users",
   "txtPassMin3Sym": "Password must be minimum 3 symbols",
+  "txtRegFinish": "Registration completed",
+  "txtRedirectLogin": "Sign in with your email address and password",
 
   "txtPageNotFound": "Page not found...",
 
@@ -39,7 +41,8 @@
   "txtOffline": "offline",
   "txtNoMessages": "No messages",
 
-  "txtBtnNewMeeting": "Start new meeting",
+  "txtBtnNewMeeting": "Start new meeting with",
+  "txtChooseContact1": "Choose contact",
 
   "txtShareScreen": "Screen sharing",
   "txtShareScreenOnOff": "Screen sharing on/off",
@@ -49,5 +52,7 @@
   "txtChatRoomWith": "Chat Room with",
   "txtSendMessage": "Send message",
 
-  "txtYou": "You"
+  "txtYou": "You",
+
+  "txtAccessIsDenied": "Access is denied"
 }

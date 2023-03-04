@@ -39,8 +39,10 @@ const Register: FC = () => {
               style={{ fontSize: "3rem", color: "#08c", margin: "10px 0" }}
             />
           </div>
-          <h3>{t("txtVerify")}</h3>
-          <p className="hint-text">{t("txtEmailConfirm")}</p>
+          <h3>{t("txtRegFinish")}</h3>
+          <p className="hint-text">{t("txtRedirectLogin")}</p>
+          {/* <h3>{t("txtVerify")}</h3> */}
+          {/* <p className="hint-text">{t("txtEmailConfirm")}</p> */}
         </div>
       ) : (
         <Form

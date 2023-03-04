@@ -27,6 +27,8 @@
   "txtRepeatPassword": "Повторите пароль",
   "txtThisNameVisible": "Это имя будут видеть другие пользователи",
   "txtPassMin3Sym": "Минимальная длина пароля 3 сивола",
+  "txtRegFinish": "Регистрация завершена",
+  "txtRedirectLogin": "Войдите со своим адресом электронной почты и паролем",
 
   "txtPageNotFound": "Страница не найдена...",
 
@@ -39,7 +41,8 @@
   "txtOffline": "не в сети",
   "txtNoMessages": "Нет сообщений",
 
-  "txtBtnNewMeeting": "Начать общение",
+  "txtBtnNewMeeting": "Начать общение c",
+  "txtChooseContact1": "Выберите контакт",
 
   "txtShareScreen": "Демонстрация экрана",
   "txtShareScreenOnOff": "Демонстрация экрана вкл/выкл",
@@ -49,5 +52,7 @@
   "txtChatRoomWith": "Комната для общения с",
   "txtSendMessage": "Отправить сообщение",
 
-  "txtYou": "Вы"
+  "txtYou": "Вы",
+
+  "txtAccessIsDenied": "Доступ запрещен"
 }

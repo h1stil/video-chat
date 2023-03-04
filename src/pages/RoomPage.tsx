@@ -32,7 +32,7 @@ const RoomPage = () => {
     const videoDiv = document.getElementById("video__list");
     if (videoDiv) {
       if (videoDiv.style.display === "none" || !videoDiv.style.display) {
-        videoDiv.style.display = "block";
+        videoDiv.style.display = "flex";
       } else {
         videoDiv.style.display = "none";
       }
@@ -58,6 +58,11 @@ const RoomPage = () => {
     return user ? JSON.parse(user).name : null;
   };
 
+  const activeUserEmail = () => {
+    const user = localStorage.getItem("active-contact");
+    return user ? JSON.parse(user).email : null;
+  };
+
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -71,9 +76,12 @@ const RoomPage = () => {
     <div className="video__main">
       <section className="video__frames">
         <div className="video__container container">
-          <h2 className="page__title">{`${t(
-            "txtChatRoomWith"
-          )} ${activeUser()}`}</h2>
+          <h2
+            className="page__title"
+            onClick={() =>
+              (window.location.href = `mailto:${activeUserEmail()}`)
+            }
+          >{`${t("txtChatRoomWith")} ${activeUser()}`}</h2>
           <div className="controls">
             <VideoCameraOutlined
               style={{ fontSize: "36px", display: "block" }}
@@ -95,7 +103,7 @@ const RoomPage = () => {
             {screenSharedId !== userId && (
               <li className="video__item" key={-1}>
                 {stream && <VideoPleer stream={stream} />}
-                <p>{`${userName} your id: ${userId}`}</p>
+                {/* <p>{`${userName} your id: ${userId}`}</p> */}
               </li>
             )}
             {Object.values(peersToShow as PeerState)

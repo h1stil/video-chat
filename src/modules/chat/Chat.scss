@@ -3,21 +3,70 @@
 .dialog-message__container {
   border: 1px solid black;
   border-radius: 10px;
+  overflow-y: auto;
+  max-height: 500px;
+
   .dialog-message__message {
     display: flex;
     flex-direction: column-reverse;
-    padding: 5px 10px;
+    padding: 10px 30px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 212, 99, 0.5) 0%,
+      rgba(255, 212, 99, 0) 100%
+    );
   }
+
+  .dialog-message__self {
+    align-items: end;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 212, 99, 0) 0%,
+      rgba(255, 212, 99, 0.5) 100%
+    );
+  }
+
   .message__time {
     color: $hintText;
     font-size: 0.7em;
   }
+
+  .message__timeself {
+    text-align: right;
+  }
+
+  .message__name {
+    position: relative;
+    left: -10px;
+  }
+
+  .message__selfname {
+    position: relative;
+    right: -10px;
+  }
+
+  .dialog-message__text {
+    font-size: 1.3rem;
+  }
+}
+
+.dialog-message__container::-webkit-scrollbar-track {
+  background: #fcebc2;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.dialog-message__container::-webkit-scrollbar-thumb {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 #createRoom {
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 10px;
   padding: 10px 30px;
+  width: 222px;
+  height: 68px;
   background-color: #ffd463;
   color: $secondMainColorDark;
   font-family: sans-serif;
